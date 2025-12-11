@@ -79,7 +79,7 @@ h1, p {
   align-items: center;
   gap: 32px;
 
-  .find-me-icons {
+  .find-me-icon-container {
     display: flex;
     justify-content: center;
     align-items: center;

@@ -14,9 +14,9 @@ const Hero = () => {
           
           <div className='find-me-container'>
             <p>YOU CAN FIND ME</p>
-            <div className='find-me-icons'>
-              <img src="/src/assets/icons/linkedin.svg" alt="LinkedInIcon"/>
-              <img src="/src/assets/icons/github.svg" alt="GithubIcon"/>
+            <div className='find-me-icon-container'>
+              <img className="icon" src="/src/assets/icons/linkedin.svg" alt="LinkedInIcon"/>
+              <img className="icon" src="/src/assets/icons/github.svg" alt="GithubIcon"/>
             </div>
           </div>
 
