@@ -1,0 +1,89 @@
+h1, p {
+  margin: 0;
+  padding: 0;
+}
+
+.hero-section {
+  padding: 0px 34px 0px 32px;
+  background: #151515;
+  overflow: hidden; 
+
+  .hero-content{
+    width: 100%;
+    border-left: 1px solid #4C4C4A;
+    border-right: 1px solid #4C4C4A;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 48px;  
+  }
+}
+
+.hero-title h1 {
+  font-family: "Space Mono", monospace;
+  font-size: clamp(160px, 28vw, 400px);
+  color: #F4F2E7;
+  font-family: "Space Mono";
+  font-style: normal;
+  font-weight: 700;
+  line-height: 0.85;
+  margin: 0;
+  padding: 0;
+
+  margin: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(0.05em); 
+}
+
+.hero-subtitle{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+
+  .job-title{
+    color: #F4F2E7;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+
+  .job-summary{
+    color: #84837F;
+    text-align: center;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    max-width: 560px;
+  }
+
+  .location{
+    color: #84837F;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+}
+
+.find-me-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+
+  .find-me-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+
+  }
+}

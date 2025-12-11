@@ -1,0 +1,22 @@
+/* Global placeholder styles - you can replace these with your own design */
+:root {
+  --bg: #151515;
+  --text: #F4F2E7;
+  --font-display: 'Bayon', cursive;
+  --font-mono: 'Space Mono', monospace;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: var(--font-mono), system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Headings: override user agent defaults so DevTools won't show UA styles */
+
+
