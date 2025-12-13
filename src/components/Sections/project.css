@@ -56,5 +56,110 @@ h1, h2, p {
     }
   }
 
+  .header-subtitle {
+    color: #F4F2E7;
+    font-family: "Space Mono", monospace;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+    margin-top: 8px;
+  }
+}
 
+/* Marquee Container */
+.marquee-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-top: 1px solid #4C4C4A;
+  border-bottom: 1px solid #4C4C4A;
+  background: #151515;
+}
+
+/* Gradient Overlays for fade effect */
+.marquee-gradient-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 100%;
+  background: linear-gradient(to right, #151515 0%, transparent 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.marquee-gradient-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 200px;
+  height: 100%;
+  background: linear-gradient(to left, #151515 0%, transparent 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Marquee Track - animates horizontally */
+.marquee-track {
+  display: flex;
+  width: fit-content;
+  /* GPU-accelerated animation for smooth performance */
+  will-change: transform;
+  /* 40s provides calm, premium feel - adjust for desired speed */
+  animation: marquee-scroll 40s linear infinite;
+}
+
+/* Marquee Content - each list instance */
+.marquee-content {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex-shrink: 0;
+  gap: 0;
+}
+
+.marquee-content li {
+  color: #84837f;
+  font-family: "Bayon", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  text-transform: uppercase;
+  white-space: nowrap;
+  padding: 12px 24px;
+  border-left: 1px solid #4C4C4A;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  /* Prevents text flickering during animation */
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Add right border to last item in each list for seamless connection */
+.marquee-content li:last-child {
+  border-right: 1px solid #4C4C4A;
+}
+
+/* Keyframe: Seamless infinite scroll using translate3d for GPU acceleration */
+@keyframes marquee-scroll {
+  /* Start at original position */
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  /* Move exactly -50% (one list width) for seamless loop */
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+/* Accessibility: Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    /* Slow down animation significantly for users who prefer reduced motion */
+    animation-duration: 120s;
+  }
 }

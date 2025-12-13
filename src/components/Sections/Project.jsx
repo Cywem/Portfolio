@@ -13,6 +13,35 @@ const Project = () => {
             <p className='header-subtitle'>Selected projects</p>
           </div>
         </div>
+
+        <div className='marquee-wrapper'>
+          <div className='marquee-gradient-left'></div>
+          <div className='marquee-gradient-right'></div>
+          <div className='marquee-track'>
+            <ul className='marquee-content'>
+              <li>WEBSITES</li>
+              <li>PROTOTYPES</li>
+              <li>KIOSK</li>
+              <li>ARTIFICIAL INTELLIGENCE</li>
+              <li>GRAPHICS</li>
+              <li>PUBLICATIONS</li>
+              <li>VECTOR</li>
+              <li>USER INTERFACE</li>
+              <li>USER EXPERIENCE</li>
+            </ul>
+            <ul className='marquee-content' aria-hidden='true'>
+              <li>WEBSITES</li>
+              <li>PROTOTYPES</li>
+              <li>KIOSK</li>
+              <li>ARTIFICIAL INTELLIGENCE</li>
+              <li>GRAPHICS</li>
+              <li>PUBLICATIONS</li>
+              <li>VECTOR</li>
+              <li>USER INTERFACE</li>
+              <li>USER EXPERIENCE</li>
+            </ul>
+          </div>
+        </div>
         
       </div>
 
