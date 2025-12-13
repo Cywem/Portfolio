@@ -1,4 +1,7 @@
 import './Project.css';
+import ProjectCard from '../UI/ProjectCard';
+import kwiseSkeleton from '../../assets/images/kwise_skeleton.svg';
+import kitsuneSkeleton from '../../assets/images/kitsune_skeleton.svg';
 
 const Project = () => {
   return (
@@ -49,11 +52,50 @@ const Project = () => {
       <div className='project-content'>
         <div className='project-content-container'>
 
-          <div className='project-card-container'>
-            {/* Project cards will be added here in the future */}
-            <p>project here</p>
+          <div className='project-grid'>
+            <ProjectCard
+              title="K-Wise"
+              category="AI System"
+              date="Nov 2025"
+              status="In progress"
+              categoryColor="#66EECC"
+              svgSrc={kwiseSkeleton}
+              onClick={() => console.log('K-Wise clicked')}
+            />
+            <ProjectCard
+              title="Kitsune"
+              category="Prototype"
+              date="Sept 2025"
+              status="Completed"
+              categoryColor="#FF6B6B"
+              svgSrc={kitsuneSkeleton}
+              onClick={() => console.log('Kitsune clicked')}
+            />
+            <ProjectCard
+              title="HUBITS"
+              category="Management System"
+              date="In progress"
+              status="In progress"
+              categoryColor="#4ECDC4"
+              onClick={() => console.log('HUBITS clicked')}
+            />
+            <ProjectCard
+              title="ITS Explorer"
+              category="Website"
+              date="In progress"
+              status="In progress"
+              categoryColor="#FFD93D"
+              onClick={() => console.log('ITS Explorer clicked')}
+            />
+            <ProjectCard
+              title="PC Wise - PC Builder"
+              category="Website"
+              date="Coming soon..."
+              status="Coming soon"
+              categoryColor="#FFD93D"
+              onClick={() => console.log('PC Wise clicked')}
+            />
           </div>
-
 
         </div>
       </div>
