@@ -48,7 +48,7 @@ h1, p {
 
   .job-title{
     color: #F4F2E7;
-    font-size: 32px;
+    font-size: 48px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -57,7 +57,7 @@ h1, p {
   .job-summary{
     color: #84837F;
     text-align: center;
-    font-size: 16px;
+    font-size: 20px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -66,7 +66,7 @@ h1, p {
 
   .location{
     color: #84837F;
-    font-size: 16px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
