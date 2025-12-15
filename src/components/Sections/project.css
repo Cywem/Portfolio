@@ -3,8 +3,9 @@ h1, h2, p {
   padding: 0;
 }
 .project-section {
-  height: 1000px;
-  
+  height: auto;
+  position: relative;
+  z-index: 2;
 }
 
 .project-header{
@@ -99,14 +100,13 @@ h1, h2, p {
   pointer-events: none;
 }
 
-/* Marquee Track - animates horizontally */
+/* Marquee Track - controlled by JavaScript animation */
 .marquee-track {
   display: flex;
   width: fit-content;
   /* GPU-accelerated animation for smooth performance */
   will-change: transform;
-  /* 40s provides calm, premium feel - adjust for desired speed */
-  animation: marquee-scroll 40s linear infinite;
+  /* No CSS animation - controlled by JS */
 }
 
 /* Marquee Content - each list instance */
@@ -144,25 +144,7 @@ h1, h2, p {
   border-right: 1px solid #4C4C4A;
 }
 
-/* Keyframe: Seamless infinite scroll using translate3d for GPU acceleration */
-@keyframes marquee-scroll {
-  /* Start at original position */
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  /* Move exactly -50% (one list width) for seamless loop */
-  100% {
-    transform: translate3d(-50%, 0, 0);
-  }
-}
-
-/* Accessibility: Respect reduced motion preferences */
-@media (prefers-reduced-motion: reduce) {
-  .marquee-track {
-    /* Slow down animation significantly for users who prefer reduced motion */
-    animation-duration: 120s;
-  }
-}
+/* CSS animation removed - now controlled by JavaScript for seamless infinite loop */
 
 
 .project-content{
@@ -181,7 +163,7 @@ h1, h2, p {
   align-items: center;
   gap: 32px;
   align-self: stretch;
-  padding: 64px 32px;
+  padding: 32px 32px;
 
   border-left: 1px solid #4C4C4A;
   border-right: 1px solid #4C4C4A;  

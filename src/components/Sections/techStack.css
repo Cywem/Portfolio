@@ -1,0 +1,111 @@
+/* Tech Stack Marquee Section */
+.tech-stack-section {
+  width: 100%;
+  background: #151515;
+  overflow: hidden;
+  padding: 64px 0;
+  position: relative;
+
+  border-top: 1px dashed #84837F;
+  border-bottom: 1px dashed #84837F;
+}
+
+/* Marquee Container - hides overflow */
+.tech-stack-marquee-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Marquee Track - controlled by JavaScript scroll animation */
+.tech-stack-marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 64px;
+  width: fit-content;
+  will-change: transform;
+  /* No CSS animation - controlled by JS */
+}
+
+/* Badge Card */
+.tech-stack-badge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid #f4f2e7;
+  background: #151515;
+  flex-shrink: 0;
+  height: fit-content;
+}
+
+/* Technology Icon */
+.tech-stack-icon {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* Technology Name */
+.tech-stack-name {
+  font-family: "Space Mono", monospace;
+  font-size: 48px;
+  font-weight: 700;
+  color: #f4f2e7;
+  text-transform: uppercase;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+/* Tablet Breakpoint */
+@media (max-width: 1024px) {
+  .tech-stack-section {
+    padding: 48px 0;
+  }
+
+  .tech-stack-marquee-track {
+    gap: 32px;
+  }
+
+  .tech-stack-icon {
+    width: 64px;
+    height: 64px;
+  }
+
+  .tech-stack-name {
+    font-size: 48px;
+  }
+}
+
+/* Mobile Breakpoint */
+@media (max-width: 768px) {
+  .tech-stack-section {
+    padding: 32px 0;
+  }
+
+  .tech-stack-marquee-track {
+    gap: 16px;
+  }
+
+  .tech-stack-icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .tech-stack-name {
+    font-size: 32px;
+  }
+
+  .tech-stack-badge {
+    padding: 8px;
+  }
+}
+
+/* Accessibility: Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .tech-stack-marquee-track {
+    /* Significantly slower animation for users who prefer reduced motion */
+    animation-duration: 80s;
+  }
+}

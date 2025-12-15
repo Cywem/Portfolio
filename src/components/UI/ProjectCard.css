@@ -161,10 +161,7 @@
   opacity: 1;
 }
 
-.project-card-arrow:hover {
-  background: var(--category-color);
-  color: #151515;
-}
+
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
