@@ -1,0 +1,396 @@
+/* MORE ABOUT KC Section */
+.about-section {
+  background: #151515;
+  padding: 64px 32px;
+  min-height: 100vh;
+}
+
+.about-container {
+  display: grid;
+  grid-template-columns: 375px 1fr;
+  gap: 64px;
+  max-width: 1416px;
+  margin: 0 auto;
+}
+
+/* LEFT COLUMN - FIXED NAVIGATION */
+.about-left {
+  position: sticky;
+  top: 100px;
+  height: fit-content;
+}
+
+.about-header {
+  margin-bottom: 48px;
+}
+
+.about-title {
+  font-size: 64px;
+  line-height: 1;
+  color: #f4f2e7;
+  margin: 0 0 24px 0;
+  white-space: nowrap;
+}
+
+.title-more {
+  font-family: "Bayon", sans-serif;
+  font-weight: 400;
+}
+
+.title-kc {
+  font-family: "Space Mono", monospace;
+  font-weight: 400;
+}
+
+.about-description {
+  font-family: "Space Mono", monospace;
+  font-size: 16px;
+  font-weight: 400;
+  color: #84837f;
+  line-height: 1.5;
+  max-width: 375px;
+  margin: 0;
+}
+
+/* Navigation Tabs */
+.about-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.nav-tab {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: transparent;
+  border: none;
+  font-family: "Space Mono", monospace;
+  font-size: 14px;
+  font-weight: 400;
+  color: #84837f;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tab-indicator {
+  width: 10px;
+  height: 10px;
+  background: #96f0e5;
+  flex-shrink: 0;
+}
+
+.nav-tab.active {
+  background: #96f0e5;
+  color: #151515;
+}
+
+.nav-tab.active .tab-indicator {
+  background: #151515;
+}
+
+.nav-tab:hover:not(.active) {
+  background: rgba(150, 240, 229, 0.1);
+}
+
+/* RIGHT COLUMN - SCROLLABLE CONTENT */
+.about-right {
+  display: flex;
+  flex-direction: column;
+  gap: 128px;
+}
+
+.content-section {
+  position: relative;
+  padding-top: 32px;
+}
+
+.section-heading {
+  font-family: "Bayon", sans-serif;
+  font-size: 48px;
+  font-weight: 400;
+  color: #f4f2e7;
+  margin: 0 0 48px 0;
+  text-transform: uppercase;
+}
+
+/* CERTIFICATIONS - FILTERS */
+.filter-group {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 8px 16px;
+  background: transparent;
+  border: 1px solid #4C4C4A;
+  font-family: "Space Mono", monospace;
+  font-size: 12px;
+  font-weight: 400;
+  color: #84837f;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filter-btn.active {
+  background: #f4f2e7;
+  color: #151515;
+  border-color: #f4f2e7;
+}
+
+.filter-btn:hover:not(.active) {
+  border-color: #f4f2e7;
+  color: #f4f2e7;
+}
+
+/* CERTIFICATIONS - GRID */
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 100px));
+  gap: 16px;
+}
+
+.cert-item {
+  width: 100px;
+  height: 100px;
+  border: 1px solid #4C4C4A;
+  background: #151515;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.cert-item:hover {
+  border-color: #96f0e5;
+  transform: scale(1.05);
+}
+
+.cert-logo {
+  max-width: 70%;
+  max-height: 70%;
+  object-fit: contain;
+}
+
+/* Certificate Hover Label */
+.cert-label {
+  position: fixed;
+  background: #f4f2e7;
+  color: #151515;
+  padding: 12px 16px;
+  font-family: "Space Mono", monospace;
+  font-size: 12px;
+  font-weight: 700;
+  border: 1px solid #151515;
+  pointer-events: none;
+  z-index: 1000;
+  white-space: nowrap;
+}
+
+.cert-label-date {
+  font-weight: 400;
+  color: #84837f;
+}
+
+/* LEADERSHIP BACKGROUND - AFFILIATIONS */
+.affiliation-list {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.affiliation-item {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 24px;
+  padding: 24px;
+  border: 1px solid #4C4C4A;
+  background: #151515;
+}
+
+.affiliation-logo {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.affiliation-logo img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.affiliation-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.affiliation-org {
+  font-family: "Space Mono", monospace;
+  font-size: 14px;
+  font-weight: 700;
+  color: #f4f2e7;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.affiliation-period {
+  font-family: "Space Mono", monospace;
+  font-size: 12px;
+  font-weight: 400;
+  color: #84837f;
+  margin: 0;
+}
+
+.affiliation-roles {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.role-badge {
+  padding: 4px 12px;
+  background: rgba(150, 240, 229, 0.1);
+  border: 1px solid #96f0e5;
+  font-family: "Space Mono", monospace;
+  font-size: 11px;
+  font-weight: 400;
+  color: #96f0e5;
+  text-transform: capitalize;
+}
+
+/* AWARDS & RECOGNITIONS */
+.awards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.award-item {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 20px;
+  padding: 24px;
+  border: 1px solid #4C4C4A;
+  background: #151515;
+}
+
+.award-icon {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.award-icon img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.award-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.award-category {
+  font-family: "Space Mono", monospace;
+  font-size: 11px;
+  font-weight: 400;
+  color: #96f0e5;
+  text-transform: uppercase;
+  border: 1px solid #96f0e5;
+  padding: 2px 8px;
+  width: fit-content;
+}
+
+.award-title {
+  font-family: "Space Mono", monospace;
+  font-size: 18px;
+  font-weight: 700;
+  color: #f4f2e7;
+  margin: 0;
+}
+
+.award-org {
+  font-family: "Space Mono", monospace;
+  font-size: 12px;
+  font-weight: 400;
+  color: #84837f;
+  margin: 0;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .about-container {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .about-left {
+    position: relative;
+    top: 0;
+  }
+
+  .about-title {
+    font-size: 48px;
+  }
+
+  .about-nav {
+    flex-direction: row;
+    overflow-x: auto;
+  }
+
+  .nav-tab {
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-section {
+    padding: 32px 16px;
+  }
+
+  .about-title {
+    font-size: 36px;
+  }
+
+  .section-heading {
+    font-size: 32px;
+  }
+
+  .cert-grid {
+    grid-template-columns: repeat(auto-fill, minmax(80px, 80px));
+  }
+
+  .cert-item {
+    width: 80px;
+    height: 80px;
+  }
+
+  .affiliation-item,
+  .award-item {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .affiliation-logo,
+  .award-icon {
+    justify-self: center;
+  }
+}

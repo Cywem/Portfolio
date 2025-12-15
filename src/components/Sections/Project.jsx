@@ -181,7 +181,7 @@ const Project = () => {
               onClick={() => console.log('PC Wise clicked')}
             />
           </div>
-          <button>See all projects</button>
+          <button>See More Projects</button>
         </div>
       </div>
 

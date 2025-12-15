@@ -7,6 +7,7 @@ import Navigation from './components/Layout/navigation.jsx'
 import Hero from './components/Sections/Hero.jsx'
 import Project from './components/Sections/Project.jsx'
 import TechStack from './components/Sections/TechStack.jsx'
+import About from './components/Sections/About.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -14,6 +15,7 @@ createRoot(document.getElementById('root')).render(
     <Hero />
     <Project />
     <TechStack />
+    <About />
     <App />
   </StrictMode>,
 )
