@@ -3,9 +3,13 @@ import './about.css';
 
 // Import certification/organization logos
 import zuittLogo from '../../assets/images/logos/zuitt-logo.svg';
-import dcitLogo from '../../assets/images/logos/DCIT-logo.svg';
+import dictLogo from '../../assets/images/logos/DCIT-logo.svg';
+import creativeNationAcademyLogo from '../../assets/images/logos/creative-nation-logo.svg'; 
 import itsLogo from '../../assets/images/logos/ITS-logo.svg';
 import bknrLogo from '../../assets/images/logos/BKNR-logo.svg';
+import dciLogo from '../../assets/images/logos/DCI-logo.svg';
+import ovprepqaLogo from '../../assets/images/logos/OVPREPQA-logo.svg';
+import acssLogo from '../../assets/images/logos/ACSS-logo.svg';
 
 const About = () => {
   const [activeTab, setActiveTab] = useState('certifications');
@@ -19,12 +23,16 @@ const About = () => {
 
   // Certification data
   const certifications = [
-    { id: 1, name: 'Full Stack Development', organization: 'Zuitt', date: 'Dec 2025', category: 'technical', logo: zuittLogo, url: '#' },
-    { id: 2, name: 'AWS Cloud Practitioner', organization: 'Amazon Web Services', date: 'Nov 2025', category: 'technical', logo: null, url: '#' },
-    { id: 3, name: 'React Professional', organization: 'Meta', date: 'Oct 2025', category: 'technical', logo: null, url: '#' },
-    { id: 4, name: 'Leadership Excellence', organization: 'Harvard', date: 'Sep 2025', category: 'leadership', logo: null, url: '#' },
-    { id: 5, name: 'UI/UX Design', organization: 'Google', date: 'Aug 2025', category: 'technical', logo: null, url: '#' },
-    { id: 6, name: 'Project Management', organization: 'PMI', date: 'Jul 2025', category: 'leadership', logo: null, url: '#' },
+    { id: 1, name: 'DTI Programs and Services and DICT Programs and Projects', organization: 'DICT', date: 'Sept 2023', category: 'technical', logo: dictLogo, url: '#' },
+    { id: 2, name: 'Learning Adobe Captivate 2023 for Educators', organization: 'Creative Nation Academy', date: 'Sept 2023', category: 'technical', logo: creativeNationAcademyLogo, url: '#' },
+    { id: 3, name: 'Deceptive, Unfair, and Unconscionable Sales Acts and Practices', organization: 'DICT', date: 'Sept 2023', category: 'technical', logo: dictLogo, url: '#' },
+    { id: 4, name: 'AI: How the technology can be utilized responsibly and reliably as Human support', organization: 'DICT', date: 'Sept 2023', category: 'technical', logo: dictLogo, url: '#' },
+    { id: 5, name: 'Beyond the Screen: Exploring the Dynamic Duo of Media Information and Technology', organization: 'DICT', date: 'Sept 2023', category: 'technical', logo: dictLogo, url: '#' },
+    { id: 6, name: 'Coding Bootcamp Basic Web Development Workshops', organization: 'Zuitt', date: 'Sept 2023', category: 'technical', logo: zuittLogo, url: '#' },
+    { id: 7, name: 'AI: Opening More Access to Economic Opportunities: A brief session and conversation', organization: 'DICT', date: 'Sept 2023', category: 'technical', logo: dictLogo, url: '#' },
+    { id: 8, name: 'FIGMAgination: Where Art Meets The Algorithm', organization: 'Information Technology Society', date: 'Nov 2025', category: 'technical', logo: itsLogo, url: '#' },
+    { id: 9, name: 'WebDev Basics: A Web Development Workshop', organization: 'ACSS', date: 'Nov 2025', category: 'technical', logo: acssLogo, url: '#' },
+    { id: 10, name: 'TechnoExpo 2025: Empowering Communities. Elevate Industries. Exhibit Innovation', organization: 'CCC-OVPREPQA', date: 'Nov 2025', category: 'technical', logo: ovprepqaLogo, url: '#' },
   ];
 
   // Leadership background data
@@ -37,9 +45,9 @@ const About = () => {
     },
     {
       organization: 'DEPARTMENT OF COMPUTING AND INFORMATICS',
-      period: '2024-2025',
+      period: 'JAN, 2024 - NOV, 2025',
       roles: ['Capstone Coordinator'],
-      logo: dcitLogo
+      logo: dciLogo
     },
     {
       organization: 'BKNR - CCC',
@@ -51,17 +59,12 @@ const About = () => {
 
   // Awards data
   const awards = [
-    { title: 'Excellence in Innovation', category: 'Innovation', organization: 'TechnoExpo', date: 'Dec 2025' },
-    { title: 'Best Presenter', category: 'Presenter', organization: 'TechnoExpo', date: 'Dec 2025' },
-    { title: 'Top 1 Officer', category: 'Leadership', organization: 'Information Technology Society', period: '2023-2024' },
-    { title: 'Top 3 Officer', category: 'Leadership', organization: 'BKNR - CCC Chapter', period: '2023-2024' },
-    { title: 'Top 3 Officer', category: 'Leadership', organization: 'Information Technology Society', period: '2022-2023' }
+    { title: 'Excellence in Innovation', category: 'Innovation', organization: 'TechnoExpo', date: 'Dec 2025', logo: ovprepqaLogo },
+    { title: 'Best Presenter', category: 'Presenter', organization: 'TechnoExpo', date: 'Dec 2025', logo: ovprepqaLogo },
+    { title: 'Top 1 Officer', category: 'Leadership', organization: 'Information Technology Society', period: '2023-2024', logo: itsLogo },
+    { title: 'Top 3 Officer', category: 'Leadership', organization: 'BKNR - CCC Chapter', period: '2023-2024', logo: bknrLogo },
+    { title: 'Top 3 Officer', category: 'Leadership', organization: 'Information Technology Society', period: '2022-2023', logo: itsLogo }
   ];
-
-  // Filter certifications
-  const filteredCertifications = activeFilter === 'all' 
-    ? certifications 
-    : certifications.filter(cert => cert.category === activeFilter);
 
   // Scroll tracking for active tab
   useEffect(() => {
@@ -170,21 +173,134 @@ const About = () => {
             </div>
 
             <div className="cert-grid">
-              {filteredCertifications.map(cert => (
-                <a
-                  key={cert.id}
-                  href={cert.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="cert-item"
-                  onMouseMove={(e) => handleMouseMove(e, cert.id)}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  {cert.logo && (
-                    <img src={cert.logo} alt={cert.organization} className="cert-logo" />
-                  )}
-                </a>
-              ))}
+              {/* Column 1: Spacer + 3 certs */}
+              <div className="cert-column">
+                <div className="cert-spacer"></div>
+                {certifications.slice(0, 3).map(cert => {
+                  const isVisible = activeFilter === 'all' || cert.category === activeFilter;
+                  return (
+                    <a
+                      key={cert.id}
+                      href={isVisible ? cert.url : undefined}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`cert-item ${!isVisible ? 'filtered-out' : ''}`}
+                      onMouseMove={isVisible ? (e) => handleMouseMove(e, cert.id) : undefined}
+                      onMouseLeave={isVisible ? handleMouseLeave : undefined}
+                      style={{ pointerEvents: isVisible ? 'auto' : 'none' }}
+                    >
+                      {cert.logo && isVisible && (
+                        <img src={cert.logo} alt={cert.organization} className="cert-logo" />
+                      )}
+                    </a>
+                  );
+                })}
+              </div>
+
+              {/* Column 2: 4 certs */}
+              <div className="cert-column">
+                {[...Array(4)].map((_, index) => {
+                  const cert = certifications[3 + index];
+                  if (!cert) {
+                    return <div key={`placeholder-col2-${index}`} className="cert-item"></div>;
+                  }
+                  const isVisible = activeFilter === 'all' || cert.category === activeFilter;
+                  return (
+                    <a
+                      key={cert.id}
+                      href={isVisible ? cert.url : undefined}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`cert-item ${!isVisible ? 'filtered-out' : ''}`}
+                      onMouseMove={isVisible ? (e) => handleMouseMove(e, cert.id) : undefined}
+                      onMouseLeave={isVisible ? handleMouseLeave : undefined}
+                      style={{ pointerEvents: isVisible ? 'auto' : 'none' }}
+                    >
+                      {cert.logo && isVisible && (
+                        <img src={cert.logo} alt={cert.organization} className="cert-logo" />
+                      )}
+                    </a>
+                  );
+                })}
+              </div>
+
+              {/* Column 3: Spacer + 3 certs */}
+              <div className="cert-column">
+                <div className="cert-spacer"></div>
+                {[...Array(3)].map((_, index) => {
+                  const cert = certifications[7 + index];
+                  if (!cert) {
+                    return <div key={`col3-placeholder-${index}`} className="cert-item"></div>;
+                  }
+                  const isVisible = activeFilter === 'all' || cert.category === activeFilter;
+                  return (
+                    <a
+                      key={cert.id}
+                      href={isVisible ? cert.url : undefined}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`cert-item ${!isVisible ? 'filtered-out' : ''}`}
+                      onMouseMove={isVisible ? (e) => handleMouseMove(e, cert.id) : undefined}
+                      onMouseLeave={isVisible ? handleMouseLeave : undefined}
+                      style={{ pointerEvents: isVisible ? 'auto' : 'none' }}
+                    >
+                      {cert.logo && isVisible && (
+                        <img src={cert.logo} alt={cert.organization} className="cert-logo" />
+                      )}
+                    </a>
+                  );
+                })}
+              </div>
+
+              {/* Column 4: 4 certs */}
+              <div className="cert-column">
+                {[...Array(4)].map((_, index) => {
+                  const cert = certifications[10 + index];
+                  if (!cert) {
+                    return <div key={`col4-placeholder-${index}`} className="cert-item"></div>;
+                  }
+                  const isVisible = activeFilter === 'all' || cert.category === activeFilter;
+                  return (
+                    <a
+                      key={cert.id}
+                      href={isVisible ? cert.url : undefined}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`cert-item ${!isVisible ? 'filtered-out' : ''}`}
+                      onMouseMove={isVisible ? (e) => handleMouseMove(e, cert.id) : undefined}
+                      onMouseLeave={isVisible ? handleMouseLeave : undefined}
+                      style={{ pointerEvents: isVisible ? 'auto' : 'none' }}
+                    >
+                      {cert.logo && isVisible && (
+                        <img src={cert.logo} alt={cert.organization} className="cert-logo" />
+                      )}
+                    </a>
+                  );
+                })}
+              </div>
+
+              {/* Column 5: Spacer + 3 certs */}
+              <div className="cert-column">
+                <div className="cert-spacer"></div>
+                {[...Array(3)].map((_, index) => (
+                  <div key={`col5-placeholder-${index}`} className="cert-item"></div>
+                ))}
+              </div>
+
+              {/* Column 6: 4 certs */}
+              <div className="cert-column">
+                {[...Array(4)].map((_, index) => (
+                  <div key={`col6-placeholder-${index}`} className="cert-item"></div>
+                ))}
+              </div>
+
+              {/* Column 7: Spacer + 3 certs */}
+              <div className="cert-column">
+                <div className="cert-spacer"></div>
+                {[...Array(3)].map((_, index) => (
+                  <div key={`col7-placeholder-${index}`} className="cert-item"></div>
+                ))}
+              </div>
             </div>
 
             {/* Hover label */}
@@ -237,7 +353,7 @@ const About = () => {
               {awards.map((award, index) => (
                 <div key={index} className="award-item">
                   <div className="award-icon">
-                    <img src={dcitLogo} alt="Award" />
+                    <img src={award.logo} alt={award.organization} />
                   </div>
                   <div className="award-content">
                     <span className="award-category">{award.category}</span>
