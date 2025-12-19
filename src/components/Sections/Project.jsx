@@ -10,7 +10,32 @@ const Project = () => {
   const marqueeTrackRef = useRef(null);
   const marqueeAnimationRef = useRef(null);
   const marqueePositionRef = useRef(0);
+  const projectHeaderRef = useRef(null);
   const [hasAnimated, setHasAnimated] = useState(false);
+
+  // Intersection Observer for entrance animation
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasAnimated) {
+            setHasAnimated(true);
+          }
+        });
+      },
+      {
+        threshold: 0.2,
+        rootMargin: '-50px'
+      }
+    );
+
+    const headerRef = projectHeaderRef.current;
+    if (headerRef) observer.observe(headerRef);
+
+    return () => {
+      if (headerRef) observer.unobserve(headerRef);
+    };
+  }, [hasAnimated]);
 
   useEffect(() => {
     const track = marqueeTrackRef.current;
@@ -63,14 +88,9 @@ const Project = () => {
     <section 
       className="project-section" 
       id="projects"
-      onMouseEnter={() => {
-        if (!hasAnimated) {
-          setHasAnimated(true);
-        }
-      }}
     >
 
-      <div className='project-header'>
+      <div className='project-header' ref={projectHeaderRef}>
         <div className='project-header-container'>
 
           <div className='header-divider'></div>
@@ -164,7 +184,7 @@ const Project = () => {
               svgSrc={kwiseSkeleton}
               onClick={() => console.log('K-Wise clicked')}
               className={hasAnimated ? 'animate-enter' : ''}
-              style={{ animationDelay: '0.3s' }}
+              style={{ animationDelay: '1s' }}
             />
             <ProjectCard
               title="Kitsune"
@@ -175,7 +195,7 @@ const Project = () => {
               svgSrc={kitsuneSkeleton}
               onClick={() => console.log('Kitsune clicked')}
               className={hasAnimated ? 'animate-enter' : ''}
-              style={{ animationDelay: '0.4s' }}
+              style={{ animationDelay: '1.2s' }}
             />
             <ProjectCard
               title="HUBITS"
@@ -185,7 +205,7 @@ const Project = () => {
               categoryColor="#4ECDC4"
               onClick={() => console.log('HUBITS clicked')}
               className={hasAnimated ? 'animate-enter' : ''}
-              style={{ animationDelay: '0.5s' }}
+              style={{ animationDelay: '1.4s' }}
             />
             <ProjectCard
               title="ITS Explorer"
@@ -195,7 +215,7 @@ const Project = () => {
               categoryColor="#FFD93D"
               onClick={() => console.log('ITS Explorer clicked')}
               className={hasAnimated ? 'animate-enter' : ''}
-              style={{ animationDelay: '0.6s' }}
+              style={{ animationDelay: '1.6s' }}
             />
             <ProjectCard
               title="PC Wise - PC Builder"
@@ -205,13 +225,13 @@ const Project = () => {
               categoryColor="#FFD93D"
               onClick={() => console.log('PC Wise clicked')}
               className={hasAnimated ? 'animate-enter' : ''}
-              style={{ animationDelay: '0.7s' }}
+              style={{ animationDelay: '1.8s' }}
             />
           </div>
           <SeeMoreButton 
             onClick={() => console.log('See more projects clicked')}
             className={hasAnimated ? 'animate-enter' : ''}
-            style={{ animationDelay: '0.8s' }}
+            style={{ animationDelay: '2s' }}
           />
         </div>
       </div>

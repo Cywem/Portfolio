@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import './about.css';
+import DecryptedText from '../UI/DecryptedText';
 
 // Import certification/organization logos
 import zuittLogo from '../../assets/images/logos/zuitt-logo.svg';
@@ -35,10 +36,12 @@ const About = () => {
   const [isCertificationsVisible, setIsCertificationsVisible] = useState(false);
   const [isAffiliationsVisible, setIsAffiliationsVisible] = useState(false);
   const [isAwardsVisible, setIsAwardsVisible] = useState(false);
+  const [isAboutLeftVisible, setIsAboutLeftVisible] = useState(false);
 
   const certificationsRef = useRef(null);
   const leadershipRef = useRef(null);
   const awardsRef = useRef(null);
+  const aboutLeftRef = useRef(null);
   const certificationsContentRef = useRef(null);
   const affiliationsContentRef = useRef(null);
   const awardsContentRef = useRef(null);
@@ -119,6 +122,30 @@ const About = () => {
 
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Scroll-triggered reveal animation for about-left
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !isAboutLeftVisible) {
+            setIsAboutLeftVisible(true);
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px'
+      }
+    );
+
+    const leftRef = aboutLeftRef.current;
+    if (leftRef) observer.observe(leftRef);
+
+    return () => {
+      if (leftRef) observer.unobserve(leftRef);
+    };
+  }, [isAboutLeftVisible]);
 
   // Scroll-triggered reveal animation for all content sections
   useEffect(() => {
@@ -257,8 +284,8 @@ const About = () => {
       <div className="about-container">
         
         {/* LEFT COLUMN - FIXED NAVIGATION */}
-        <div className="about-left">
-          <div className="about-header">
+        <div className="about-left" ref={aboutLeftRef}>
+          <div className={`about-header ${isAboutLeftVisible ? 'animate-enter' : ''}`}>
             <h2 className="about-title">
               <span className="title-more">MORE ABOUT</span>{' '}
               <span className="title-kc">KC</span>
@@ -268,7 +295,7 @@ const About = () => {
             </p>
           </div>
 
-          <nav className="about-nav">
+          <nav className={`about-nav ${isAboutLeftVisible ? 'animate-enter' : ''}`} style={{ animationDelay: '0.1s' }}>
             <button 
               className={`nav-tab ${activeTab === 'certifications' ? 'active' : ''}`}
               onClick={() => scrollToSection(certificationsRef, 'certifications')}
@@ -457,7 +484,10 @@ const About = () => {
 
           {/* LEADERSHIP BACKGROUND SECTION */}
           <div className="content-section" ref={leadershipRef}>
-            <h3 className="section-heading">AFFILIATIONS</h3>
+            <h3 className={`section-heading ${isAffiliationsVisible ? 'heading-visible' : ''}`}>
+              {isAffiliationsVisible && <DecryptedText text="AFFILIATIONS" speed={30} maxIterations={10} sequential={true} animateOn="view" />}
+              {!isAffiliationsVisible && "AFFILIATIONS"}
+            </h3>
             
             <div 
               className={`affiliation-list ${isAffiliationsVisible ? 'content-visible' : ''}`}
@@ -536,8 +566,11 @@ const About = () => {
           {/* AWARDS SECTION */}
           <div className="content-section" ref={awardsRef}>
             <div className="awards-header">
-              <h3 className="section-heading awards-title">
-                <span>AWARDS & RECOGNITIONS</span>
+              <h3 className={`section-heading awards-title ${isAwardsVisible ? 'heading-visible' : ''}`}>
+                <span>
+                  {isAwardsVisible && <DecryptedText text="AWARDS & RECOGNITIONS" speed={30} maxIterations={10} sequential={true} animateOn="view" />}
+                  {!isAwardsVisible && "AWARDS & RECOGNITIONS"}
+                </span>
                 <span></span>
               </h3>
             </div>
