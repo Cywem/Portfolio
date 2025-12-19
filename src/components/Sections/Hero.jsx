@@ -77,7 +77,7 @@ const Hero = () => {
             <p>YOU CAN FIND ME</p>
             <div className='find-me-icon-container'>
               <a 
-                href="https://linkedin.com" 
+                href="https://www.linkedin.com/in/kent-cyrem/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 onMouseEnter={() => {
@@ -110,7 +110,7 @@ const Hero = () => {
                 />
               </a>
               <a 
-                href="https://github.com" 
+                href="https://github.com/Cywem" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 onMouseEnter={() => {

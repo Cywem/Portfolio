@@ -43,7 +43,7 @@ const Footer = () => {
           <div className='footer-socials'>
             <div className='footer-socials-links'>
               <a 
-                href="https://linkedin.com" 
+                href="https://www.linkedin.com/in/kent-cyrem/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 onMouseEnter={() => {
@@ -76,7 +76,7 @@ const Footer = () => {
                 />
               </a>
               <a 
-                href="https://github.com" 
+                href="https://github.com/Cywem" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 onMouseEnter={() => {
