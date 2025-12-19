@@ -7,13 +7,15 @@ const ProjectCard = ({
   status,
   categoryColor,
   onClick,
-  svgSrc
+  svgSrc,
+  className = '',
+  style = {}
 }) => {
   return (
     <article 
-      className="project-card" 
+      className={`project-card ${className}`}
       onClick={onClick}
-      style={{ '--category-color': categoryColor }}
+      style={{ '--category-color': categoryColor, ...style }}
     >
       <div className="project-card-inner">
         {/* SVG/Vector Visual */}

@@ -9,6 +9,8 @@
   overflow: hidden;
   /* CSS custom property for dynamic category color */
   --category-color: #84837F;
+  opacity: 0;
+  transform: translateY(20px);
 }
 
 .project-card:hover {

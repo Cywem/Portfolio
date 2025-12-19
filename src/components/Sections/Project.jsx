@@ -1,6 +1,8 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './Project.css';
 import ProjectCard from '../UI/ProjectCard';
+import DecryptedText from '../UI/DecryptedText';
+import SeeMoreButton from '../UI/SeeMoreButton';
 import kwiseSkeleton from '../../assets/images/kwise_skeleton.svg';
 import kitsuneSkeleton from '../../assets/images/kitsune_skeleton.svg';
 
@@ -8,6 +10,7 @@ const Project = () => {
   const marqueeTrackRef = useRef(null);
   const marqueeAnimationRef = useRef(null);
   const marqueePositionRef = useRef(0);
+  const [hasAnimated, setHasAnimated] = useState(false);
 
   useEffect(() => {
     const track = marqueeTrackRef.current;
@@ -57,16 +60,30 @@ const Project = () => {
   }, []);
 
   return (
-    <section className="project-section" id="projects">
+    <section 
+      className="project-section" 
+      id="projects"
+      onMouseEnter={() => {
+        if (!hasAnimated) {
+          setHasAnimated(true);
+        }
+      }}
+    >
 
       <div className='project-header'>
         <div className='project-header-container'>
 
           <div className='header-divider'></div>
           <div className='header-title-container'>
-            <h2 className='header-title'>I MAKE PROJECTS</h2>
-            <h2 className='header-title'>FEEL <span id='title-alive'>alive</span></h2>
-            <p className='header-subtitle'>Selected projects</p>
+            <h2 className={`header-title ${hasAnimated ? 'animate-enter' : ''}`}>I MAKE PROJECTS</h2>
+            <h2 className={`header-title ${hasAnimated ? 'animate-enter' : ''}`} style={{ animationDelay: '0.1s' }}>
+              FEEL {hasAnimated && <DecryptedText text="alive" speed={40} maxIterations={10} sequential={true} animateOn="view" />}
+              {!hasAnimated && <span id='title-alive'>alive</span>}
+            </h2>
+            <p className={`header-subtitle ${hasAnimated ? 'animate-enter' : ''}`} style={{ animationDelay: '0.2s' }}>
+              {hasAnimated && <DecryptedText text="Selected projects" speed={35} maxIterations={10} sequential={true} animateOn="view" />}
+              {!hasAnimated && "Selected projects"}
+            </p>
           </div>
           
           <div className='marquee-wrapper'>
@@ -146,6 +163,8 @@ const Project = () => {
               categoryColor="#66EECC"
               svgSrc={kwiseSkeleton}
               onClick={() => console.log('K-Wise clicked')}
+              className={hasAnimated ? 'animate-enter' : ''}
+              style={{ animationDelay: '0.3s' }}
             />
             <ProjectCard
               title="Kitsune"
@@ -155,6 +174,8 @@ const Project = () => {
               categoryColor="#FF6B6B"
               svgSrc={kitsuneSkeleton}
               onClick={() => console.log('Kitsune clicked')}
+              className={hasAnimated ? 'animate-enter' : ''}
+              style={{ animationDelay: '0.4s' }}
             />
             <ProjectCard
               title="HUBITS"
@@ -163,6 +184,8 @@ const Project = () => {
               status="In progress"
               categoryColor="#4ECDC4"
               onClick={() => console.log('HUBITS clicked')}
+              className={hasAnimated ? 'animate-enter' : ''}
+              style={{ animationDelay: '0.5s' }}
             />
             <ProjectCard
               title="ITS Explorer"
@@ -171,6 +194,8 @@ const Project = () => {
               status="In progress"
               categoryColor="#FFD93D"
               onClick={() => console.log('ITS Explorer clicked')}
+              className={hasAnimated ? 'animate-enter' : ''}
+              style={{ animationDelay: '0.6s' }}
             />
             <ProjectCard
               title="PC Wise - PC Builder"
@@ -179,9 +204,15 @@ const Project = () => {
               status="Coming soon"
               categoryColor="#FFD93D"
               onClick={() => console.log('PC Wise clicked')}
+              className={hasAnimated ? 'animate-enter' : ''}
+              style={{ animationDelay: '0.7s' }}
             />
           </div>
-          <button>See More Projects</button>
+          <SeeMoreButton 
+            onClick={() => console.log('See more projects clicked')}
+            className={hasAnimated ? 'animate-enter' : ''}
+            style={{ animationDelay: '0.8s' }}
+          />
         </div>
       </div>
 

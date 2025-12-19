@@ -1,0 +1,102 @@
+/* See More Button Component */
+.seemore-button {
+  display: flex;
+  height: 35px;
+  padding: 0px 8px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 4px;
+  background: #C584F6;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* Default State */
+.seemore-text {
+  color: #151515;
+  font-family: "Space Mono";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.seemore-icon-container {
+  display: flex;
+  width: 20px;
+  height: 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 2px;
+  background: #151515;
+  border: 2px solid #151515;
+  box-sizing: border-box;
+  transition: background 2.2s cubic-bezier(0.19, 1, 0.22, 1), border-color 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.seemore-button .icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding-left: 1px;
+  padding-top: 2px;
+  
+  will-change: transform;
+  backface-visibility: hidden;
+  transition: transform 2.2s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.seemore-button .icon-wrapper svg {
+  height: 10px;
+  width: 10px;
+  display: block;
+  transform: translateZ(0);
+}
+
+.seemore-button .icon-wrapper svg path {
+  transition: fill 1.2s cubic-bezier(0.19, 1, 0.22, 1), stroke 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* Hover State - ONLY icon container changes */
+.seemore-button:hover .seemore-icon-container,
+.seemore-button.hovered .seemore-icon-container {
+  background: #C584F6;
+  border-color: #151515;
+  padding-bottom: 2px;
+  padding-right: 1px;
+}
+
+.seemore-button:hover .icon-wrapper,
+.seemore-button.hovered .icon-wrapper {
+  transform: rotate(0deg);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .seemore-button {
+    padding: 14px 24px;
+    gap: 8px;
+  }
+  
+  .seemore-text {
+    font-size: 12px;
+  }
+  
+  .seemore-icon-container {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .seemore-button .icon-wrapper svg {
+    width: 8px;
+    height: 8px;
+  }
+}
