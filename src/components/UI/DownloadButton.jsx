@@ -44,13 +44,15 @@ const DownloadButton = ({ onClick, children = "DOWNLOAD CV", href, download }) =
     </>
   );
 
-  // If href is provided, render as anchor tag for download
+  // If href is provided, render as anchor tag
   if (href) {
     return (
       <a 
         {...buttonProps}
         href={href}
         download={download}
+        target={download ? undefined : "_blank"}
+        rel={download ? undefined : "noopener noreferrer"}
         role="button"
       >
         {content}
