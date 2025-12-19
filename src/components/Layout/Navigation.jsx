@@ -1,8 +1,21 @@
+import { useEffect, useState } from 'react';
 import './navigation.css'
+import RevealText from '../UI/RevealText';
 
 const Navigation = () => {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <nav className="nav-bar" role="navigation" aria-label="Main Navigation">
+    <nav className={`nav-bar ${scrolled ? 'scrolled' : ''}`} role="navigation" aria-label="Main Navigation">
       <div className="nav-container">
         <div className="nav-logo-social">
           <button className="nav-logo" aria-label="site initials">
@@ -14,7 +27,11 @@ const Navigation = () => {
             rel="noreferrer"
             className="button-linked-in"
           >
-            LNKDN
+            <RevealText 
+              shortText="LNKDN" 
+              fullText="LINKEDIN"
+              speed={50}
+            />
           </a>
           <a
             href="https://github.com"
@@ -22,12 +39,16 @@ const Navigation = () => {
             rel="noreferrer"
             className="button-github"
           >
-            GTHB
+            <RevealText 
+              shortText="GTHB" 
+              fullText="GITHUB"
+              speed={50}
+            />
           </a>
         </div>
         <div className="nav-pages">
           <a href="#projects" className="page-link">PROJECTS</a>
-          <a href="#tech" className="page-link">TECH STACK</a>
+          <a href="#tech-stack" className="page-link">TECH STACK</a>
           <a href="#about" className="page-link">ABOUT</a>
         </div>
       </div>
