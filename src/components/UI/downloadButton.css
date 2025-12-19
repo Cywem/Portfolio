@@ -1,0 +1,92 @@
+/* Download Button Component */
+.download-button {
+  display: flex;
+  height: 35px;
+  padding: 0px 8px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 4px;
+  background: #2FA8FF;
+}
+
+/* Default State */
+.download-text {
+  color: #151515;
+  font-family: "Space Mono";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.download-icon-container {
+  display: flex;
+  width: 20px;
+  height: 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 2px;
+  background: #151515;
+  border: 2px solid #151515;
+  box-sizing: border-box;
+  transition: background 2.2s cubic-bezier(0.19, 1, 0.22, 1), border-color 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  
+  will-change: transform;
+  backface-visibility: hidden;
+  transition: transform 2.2s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.icon-wrapper svg {
+  height: 12px;
+  width: 12px;
+  display: block;
+  transform: translateZ(0);
+}
+
+.icon-wrapper svg path {
+  transition: fill 1.2s cubic-bezier(0.19, 1, 0.22, 1), stroke 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* Hover State - ONLY icon container changes */
+.download-button:hover .download-icon-container,
+.download-button.hovered .download-icon-container {
+  background: #2FA8FF;
+  border-color: #151515;
+}
+
+.download-button:hover .icon-wrapper,
+.download-button.hovered .icon-wrapper {
+  transform: rotate(0deg);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .download-button {
+    padding: 14px 24px;
+    gap: 8px;
+  }
+  
+  .download-text {
+    font-size: 12px;
+  }
+  
+  .download-icon-container {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .icon-wrapper svg {
+    width: 6px;
+    height: 7px;
+  }
+}
