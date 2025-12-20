@@ -12,7 +12,7 @@ h1, h2, p {
   border-top: 1px solid #4C4C4A;
   display: flex;
   height: auto;
-  padding: 0px 32px;
+  padding: 0px 64px;
   flex-direction: column;
   align-items: center;
   gap: 32px;
@@ -170,7 +170,7 @@ h1, h2, p {
 .project-content{
   display: flex;
   height: auto;
-  padding: 0px 32px;
+  padding: 0px 64px;
   flex-direction: column;
   align-items: center;
   gap: 32px;
@@ -180,10 +180,10 @@ h1, h2, p {
 .project-content-container{
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   gap: 32px;
   align-self: stretch;
-  padding: 32px 32px;
+  padding: 84px 32px;
 
   border-left: 1px solid #4C4C4A;
   border-right: 1px solid #4C4C4A;  
@@ -191,31 +191,30 @@ h1, h2, p {
 
 
 
-/* Adaptive Project Grid - Maximum 3 cards per row */
+/* Flexbox Project Layout - Exactly 3 cards per row on desktop */
 .project-grid {
-  display: grid;
-  /* Auto-fit with fixed card width - cards won't stretch to fill row */
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: 32px;
   width: 100%;
-  max-width: 1312px;
-  justify-items: start;
 }
 
 .project-grid > * {
-  width: 100%;
-  max-width: 416px;
+  /* 3 cards per row: 32% width allows room for 2 gaps of 32px each */
+  flex: 0 0 30%;
+  max-width: 30%;
+  width: 30%;
 }
 
 /* Responsive: 2 columns on tablets and medium screens */
 @media (max-width: 1200px) {
-  .project-grid {
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    max-width: 100%;
-  }
-  
   .project-grid > * {
-    max-width: 100%;
+    /* 2 cards per row: 48% width allows room for 1 gap of 32px */
+    flex: 0 0 48%;
+    max-width: 48%;
+    width: 48%;
   }
   
   .project-content-container {
@@ -226,16 +225,23 @@ h1, h2, p {
 /* Responsive: Single column on mobile */
 @media (max-width: 768px) {
   .project-grid {
-    grid-template-columns: 1fr;
     gap: 24px;
-    justify-items: stretch;
   }
   
   .project-grid > * {
+    /* 1 card per row: full width */
+    flex: 0 0 100%;
     max-width: 100%;
   }
   
   .project-content-container {
     padding: 32px 16px;
   }
+}
+
+.see-more-button-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 32px 0px 0px 0px;
 }

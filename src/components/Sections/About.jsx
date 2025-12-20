@@ -487,6 +487,28 @@ const About = () => {
                   <div key={`col7-placeholder-${index}`} className="cert-item"></div>
                 ))}
               </div>
+
+              {/* Column 8: 4 certs */}
+              <div className="cert-column">
+                {[...Array(4)].map((_, index) => (
+                  <div key={`col8-placeholder-${index}`} className="cert-item"></div>
+                ))}
+              </div>
+
+              {/* Column 9: Spacer + 3 certs */}
+              <div className="cert-column">
+                <div className="cert-spacer"></div>
+                {[...Array(3)].map((_, index) => (
+                  <div key={`col9-placeholder-${index}`} className="cert-item"></div>
+                ))}
+              </div>
+
+              {/* Column 10: 4 certs */}
+              <div className="cert-column">
+                {[...Array(4)].map((_, index) => (
+                  <div key={`col10-placeholder-${index}`} className="cert-item"></div>
+                ))}
+              </div>
             </div>
             </div>
           </div>

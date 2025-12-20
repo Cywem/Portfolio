@@ -228,11 +228,14 @@ const Project = () => {
               style={{ animationDelay: '1.8s' }}
             />
           </div>
-          <SeeMoreButton 
-            onClick={() => console.log('See more projects clicked')}
-            className={hasAnimated ? 'animate-enter' : ''}
-            style={{ animationDelay: '2s' }}
-          />
+          <div className='see-more-button-container'>
+            <SeeMoreButton 
+              onClick={() => console.log('See more projects clicked')}
+              className={hasAnimated ? 'animate-enter' : ''}
+              style={{ animationDelay: '2s' }}
+            />
+          </div>
+          
         </div>
       </div>
 
