@@ -238,14 +238,29 @@ h3 {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: opacity 0.3s ease;
   position: relative;
 }
 
-/* When filtered, keep structure but hide content */
-.cert-item.filtered-out {
-  visibility: hidden;
-  cursor: default;
+.cert-item.has-content {
+  cursor: pointer;
+}
+
+.cert-item.has-content:hover {
+  border-color: #f4f2e7;
+}
+
+/* Logo inside container - controls visibility */
+.cert-logo {
+  max-width: 80%;
+  max-height: 80%;
+  object-fit: contain;
+  transition: opacity 0.3s ease;
+}
+
+.cert-logo.hidden {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .cert-item:not(.filtered-out):hover {

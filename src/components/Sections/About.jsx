@@ -1,31 +1,16 @@
 import { useState, useEffect, useRef } from 'react';
 import './about.css';
 import DecryptedText from '../UI/DecryptedText';
+import { certifications } from '../../data/certificationsData';
 
-// Import certification/organization logos
-import zuittLogo from '../../assets/images/logos/zuitt-logo.svg';
-import dictLogo from '../../assets/images/logos/DCIT-logo.svg';
-import creativeNationAcademyLogo from '../../assets/images/logos/creative-nation-logo.svg'; 
+// Import organization logos for affiliations
 import itsLogo from '../../assets/images/logos/ITS-logo.svg';
 import bknrLogo from '../../assets/images/logos/BKNR-logo.svg';
 import dciLogo from '../../assets/images/logos/DCI-logo.svg';
 import ovprepqaLogo from '../../assets/images/logos/OVPREPQA-logo.svg';
-import acssLogo from '../../assets/images/logos/ACSS-logo.svg';
 import ariseLogo from '../../assets/images/logos/ARISE-logo.svg';
 import psgLogo from '../../assets/images/logos/PSG-logo.svg';
 import racLogo from '../../assets/images/logos/RAC-logo.svg';
-
-// Import certificate preview images
-import cert1Preview from '../../assets/images/certifcates/09-03-23 - Certificate of Attendance KENT CYREM.webp';
-import cert2Preview from '../../assets/images/certifcates/09-06-23 - KENT CYREM P. PATASIN Adobe Captivate 2023-Cerificate.webp';
-import cert3Preview from '../../assets/images/certifcates/09-06-23 - CNA-Certificate-1-1-1.webp';
-import cert4Preview from '../../assets/images/certifcates/09-12-23 - Certificate of AttendanceKENT CYREM.webp';
-import cert5Preview from '../../assets/images/certifcates/09-13-23 - KENT CYREM P. PATASIN Certificate of Attendance.webp';
-import cert6Preview from '../../assets/images/certifcates/09-16-23 - Kent Cyrem P. Patasin Free Coding Bootcamp (September 16) - Certificate of Participation.webp';
-import cert7Preview from '../../assets/images/certifcates/09-20-23 - KENT CYREM P. PATASIN Certificate of Participation.webp';
-import cert8Preview from '../../assets/images/certifcates/11-14-25 - FIGMAGINATION CERTIFICATE OF PARTICIPATION.webp';
-import cert9Preview from '../../assets/images/certifcates/11-29-25 - PARTICIPATION_WebDev Basics.webp';
-import cert10Preview from '../../assets/images/certifcates/12-04-25 - PARTICIPATION_Kent Cyrem P. Patasin_Certificate of Participation & Recognition.webp';
 
 const About = () => {
   const [activeTab, setActiveTab] = useState('certifications');
@@ -48,19 +33,37 @@ const About = () => {
   const overlayRef = useRef(null);
   const modalRef = useRef(null);
 
-  // Certification data
-  const certifications = [
-    { id: 1, name: 'DTI Programs and Services and DICT Programs and Projects', organization: 'DICT', date: 'Sept 2023', category: 'technical', logo: dictLogo, previewImage: cert1Preview, certificateUrl: cert1Preview },
-    { id: 2, name: 'Learning Adobe Captivate 2023 for Educators', organization: 'Creative Nation Academy', date: 'Sept 2023', category: 'technical', logo: creativeNationAcademyLogo, previewImage: cert2Preview, certificateUrl: cert2Preview },
-    { id: 3, name: 'Deceptive, Unfair, and Unconscionable Sales Acts and Practices', organization: 'DICT', date: 'Sept 2023', category: 'technical', logo: dictLogo, previewImage: cert3Preview, certificateUrl: cert3Preview },
-    { id: 4, name: 'AI: How the technology can be utilized responsibly and reliably as Human support', organization: 'DICT', date: 'Sept 2023', category: 'technical', logo: dictLogo, previewImage: cert4Preview, certificateUrl: cert4Preview },
-    { id: 5, name: 'Beyond the Screen: Exploring the Dynamic Duo of Media Information and Technology', organization: 'DICT', date: 'Sept 2023', category: 'technical', logo: dictLogo, previewImage: cert5Preview, certificateUrl: cert5Preview },
-    { id: 6, name: 'Coding Bootcamp Basic Web Development Workshops', organization: 'Zuitt', date: 'Sept 2023', category: 'technical', logo: zuittLogo, previewImage: cert6Preview, certificateUrl: cert6Preview },
-    { id: 7, name: 'AI: Opening More Access to Economic Opportunities: A brief session and conversation', organization: 'DICT', date: 'Sept 2023', category: 'technical', logo: dictLogo, previewImage: cert7Preview, certificateUrl: cert7Preview },
-    { id: 8, name: 'FIGMAgination: Where Art Meets The Algorithm', organization: 'Information Technology Society', date: 'Nov 2025', category: 'technical', logo: itsLogo, previewImage: cert8Preview, certificateUrl: cert8Preview },
-    { id: 9, name: 'WebDev Basics: A Web Development Workshop', organization: 'ACSS', date: 'Nov 2025', category: 'technical', logo: acssLogo, previewImage: cert9Preview, certificateUrl: cert9Preview },
-    { id: 10, name: 'TechnoExpo 2025: Empowering Communities. Elevate Industries. Exhibit Innovation', organization: 'CCC-OVPREPQA', date: 'Nov 2025', category: 'technical', logo: ovprepqaLogo, previewImage: cert10Preview, certificateUrl: cert10Preview },
-  ];
+  // Filter and sort certifications
+  const getFilteredAndSortedCertifications = () => {
+    // Parse date strings to Date objects for sorting
+    const parseDate = (dateStr) => {
+      // Handle formats like "Nov 14 2025", "Sept 3 2023", "Aug 5 2023", "Dec 8 2023"
+      const monthMap = {
+        'Jan': 0, 'Feb': 1, 'Mar': 2, 'Apr': 3, 'May': 4, 'Jun': 5,
+        'Jul': 6, 'Aug': 7, 'Sept': 8, 'Oct': 9, 'Nov': 10, 'Dec': 11
+      };
+      const parts = dateStr.split(' ');
+      const month = monthMap[parts[0]];
+      const day = parseInt(parts[1]);
+      const year = parseInt(parts[2]);
+      return new Date(year, month, day);
+    };
+
+    // Filter based on active filter
+    let filtered = certifications;
+    if (activeFilter !== 'all') {
+      filtered = certifications.filter(cert => cert.category === activeFilter);
+    }
+
+    // Sort by date (newest to oldest)
+    return filtered.sort((a, b) => {
+      const dateA = parseDate(a.date);
+      const dateB = parseDate(b.date);
+      return dateB - dateA; // Descending order
+    });
+  };
+
+  const filteredCertifications = getFilteredAndSortedCertifications();
 
   // Leadership background data
   const affiliations = [
@@ -354,102 +357,110 @@ const About = () => {
             </div>
 
             <div className="cert-grid">
-              {/* Column 1: Spacer + 3 certs */}
+              {/* Column 1: Spacer + 3 certs (positions 0, 1, 2) */}
               <div className="cert-column">
                 <div className="cert-spacer"></div>
-                {certifications.slice(0, 3).map(cert => {
-                  const isVisible = activeFilter === 'all' || cert.category === activeFilter;
+                {[0, 1, 2].map(position => {
+                  const cert = filteredCertifications[position];
+                  const isVisible = cert !== undefined;
                   return (
                     <div
-                      key={cert.id}
-                      className={`cert-item ${!isVisible ? 'filtered-out' : ''}`}
+                      key={`col1-${position}`}
+                      className={`cert-item ${isVisible ? 'has-content' : ''}`}
                       onMouseEnter={isVisible ? (e) => handleCertMouseEnter(e, cert.id) : undefined}
                       onMouseMove={isVisible ? handleCertMouseMove : undefined}
                       onMouseLeave={isVisible ? handleCertMouseLeave : undefined}
                       onClick={isVisible ? (e) => handleBadgeClick(e, cert) : undefined}
-                      style={{ pointerEvents: isVisible ? 'auto' : 'none', cursor: isVisible ? 'pointer' : 'default' }}
+                      style={{ pointerEvents: isVisible ? 'auto' : 'none' }}
                     >
-                      {cert.logo && isVisible && (
-                        <img src={cert.logo} alt={cert.organization} className="cert-logo" />
+                      {cert && cert.logo && (
+                        <img 
+                          src={cert.logo} 
+                          alt={cert.organization} 
+                          className="cert-logo"
+                        />
                       )}
                     </div>
                   );
                 })}
               </div>
 
-              {/* Column 2: 4 certs */}
+              {/* Column 2: 4 certs (positions 3, 4, 5, 6) */}
               <div className="cert-column">
-                {[...Array(4)].map((_, index) => {
-                  const cert = certifications[3 + index];
-                  if (!cert) {
-                    return <div key={`placeholder-col2-${index}`} className="cert-item"></div>;
-                  }
-                  const isVisible = activeFilter === 'all' || cert.category === activeFilter;
+                {[3, 4, 5, 6].map(position => {
+                  const cert = filteredCertifications[position];
+                  const isVisible = cert !== undefined;
                   return (
                     <div
-                      key={cert.id}
-                      className={`cert-item ${!isVisible ? 'filtered-out' : ''}`}
+                      key={`col2-${position}`}
+                      className={`cert-item ${isVisible ? 'has-content' : ''}`}
                       onMouseEnter={isVisible ? (e) => handleCertMouseEnter(e, cert.id) : undefined}
                       onMouseMove={isVisible ? handleCertMouseMove : undefined}
                       onMouseLeave={isVisible ? handleCertMouseLeave : undefined}
                       onClick={isVisible ? (e) => handleBadgeClick(e, cert) : undefined}
-                      style={{ pointerEvents: isVisible ? 'auto' : 'none', cursor: isVisible ? 'pointer' : 'default' }}
+                      style={{ pointerEvents: isVisible ? 'auto' : 'none' }}
                     >
-                      {cert.logo && isVisible && (
-                        <img src={cert.logo} alt={cert.organization} className="cert-logo" />
+                      {cert && cert.logo && (
+                        <img 
+                          src={cert.logo} 
+                          alt={cert.organization} 
+                          className="cert-logo"
+                        />
                       )}
                     </div>
                   );
                 })}
               </div>
 
-              {/* Column 3: Spacer + 3 certs */}
+              {/* Column 3: Spacer + 3 certs (positions 7, 8, 9) */}
               <div className="cert-column">
                 <div className="cert-spacer"></div>
-                {[...Array(3)].map((_, index) => {
-                  const cert = certifications[7 + index];
-                  if (!cert) {
-                    return <div key={`col3-placeholder-${index}`} className="cert-item"></div>;
-                  }
-                  const isVisible = activeFilter === 'all' || cert.category === activeFilter;
+                {[7, 8, 9].map(position => {
+                  const cert = filteredCertifications[position];
+                  const isVisible = cert !== undefined;
                   return (
                     <div
-                      key={cert.id}
-                      className={`cert-item ${!isVisible ? 'filtered-out' : ''}`}
+                      key={`col3-${position}`}
+                      className={`cert-item ${isVisible ? 'has-content' : ''}`}
                       onMouseEnter={isVisible ? (e) => handleCertMouseEnter(e, cert.id) : undefined}
                       onMouseMove={isVisible ? handleCertMouseMove : undefined}
                       onMouseLeave={isVisible ? handleCertMouseLeave : undefined}
                       onClick={isVisible ? (e) => handleBadgeClick(e, cert) : undefined}
-                      style={{ pointerEvents: isVisible ? 'auto' : 'none', cursor: isVisible ? 'pointer' : 'default' }}
+                      style={{ pointerEvents: isVisible ? 'auto' : 'none' }}
                     >
-                      {cert.logo && isVisible && (
-                        <img src={cert.logo} alt={cert.organization} className="cert-logo" />
+                      {cert && cert.logo && (
+                        <img 
+                          src={cert.logo} 
+                          alt={cert.organization} 
+                          className="cert-logo"
+                        />
                       )}
                     </div>
                   );
                 })}
               </div>
 
-              {/* Column 4: 4 certs */}
+              {/* Column 4: 4 certs (positions 10, 11, 12, 13) */}
               <div className="cert-column">
-                {[...Array(4)].map((_, index) => {
-                  const cert = certifications[10 + index];
-                  if (!cert) {
-                    return <div key={`col4-placeholder-${index}`} className="cert-item"></div>;
-                  }
-                  const isVisible = activeFilter === 'all' || cert.category === activeFilter;
+                {[10, 11, 12, 13].map(position => {
+                  const cert = filteredCertifications[position];
+                  const isVisible = cert !== undefined;
                   return (
                     <div
-                      key={cert.id}
-                      className={`cert-item ${!isVisible ? 'filtered-out' : ''}`}
+                      key={`col4-${position}`}
+                      className={`cert-item ${isVisible ? 'has-content' : ''}`}
                       onMouseEnter={isVisible ? (e) => handleCertMouseEnter(e, cert.id) : undefined}
                       onMouseMove={isVisible ? handleCertMouseMove : undefined}
                       onMouseLeave={isVisible ? handleCertMouseLeave : undefined}
                       onClick={isVisible ? (e) => handleBadgeClick(e, cert) : undefined}
-                      style={{ pointerEvents: isVisible ? 'auto' : 'none', cursor: isVisible ? 'pointer' : 'default' }}
+                      style={{ pointerEvents: isVisible ? 'auto' : 'none' }}
                     >
-                      {cert.logo && isVisible && (
-                        <img src={cert.logo} alt={cert.organization} className="cert-logo" />
+                      {cert && cert.logo && (
+                        <img 
+                          src={cert.logo} 
+                          alt={cert.organization} 
+                          className="cert-logo"
+                        />
                       )}
                     </div>
                   );
@@ -712,7 +723,7 @@ const About = () => {
                 <div className="cert-date-text">{cert.date}</div>
               </div>
               <div className="cert-arrow-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8" fill="none">
+                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8" fill="none" style={{ paddingRight: '1px' }}>
                   <path d="M4.08028 6.78312C4.13548 6.78409 4.17945 6.82962 4.1785 6.88482L4.16112 7.89824C4.16018 7.95349 4.11461 7.99749 4.05936 7.99651L0.0982183 7.92605C0.0430208 7.92507 -0.00093878 7.87954 1.1668e-05 7.82435L0.0696947 3.77744C0.0706463 3.72218 0.116252 3.67817 0.171516 3.67918L1.16061 3.69735C1.21578 3.69836 1.25971 3.74388 1.25876 3.79906L1.22302 5.87422L5.91625 1.24871L3.9163 1.21346C3.8611 1.21249 3.81713 1.16696 3.81808 1.11176L3.83546 0.0983404C3.8364 0.0430951 3.88198 -0.000912024 3.93722 7.06658e-05L7.89836 0.0705313C7.95356 0.0715131 7.99752 0.117039 7.99657 0.172237L7.92689 4.21914C7.92594 4.2744 7.88033 4.31841 7.82507 4.3174L6.83597 4.29923C6.7808 4.29822 6.73687 4.2527 6.73782 4.19752L6.77415 2.09021L2.04883 6.74727L4.08028 6.78312Z" fill="#F4F2E7"/>
                 </svg>
               </div>
