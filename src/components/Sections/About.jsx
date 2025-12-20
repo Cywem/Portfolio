@@ -265,6 +265,8 @@ const About = () => {
   // Lock body scroll when modal is open
   useEffect(() => {
     if (expandedCert) {
+      // Simply hide overflow without padding compensation
+      // The layout shift is prevented by ensuring scrollbar space is preserved in CSS
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
@@ -371,7 +373,6 @@ const About = () => {
                       onMouseMove={isVisible ? handleCertMouseMove : undefined}
                       onMouseLeave={isVisible ? handleCertMouseLeave : undefined}
                       onClick={isVisible ? (e) => handleBadgeClick(e, cert) : undefined}
-                      style={{ pointerEvents: isVisible ? 'auto' : 'none' }}
                     >
                       {cert && cert.logo && (
                         <img 
@@ -398,7 +399,6 @@ const About = () => {
                       onMouseMove={isVisible ? handleCertMouseMove : undefined}
                       onMouseLeave={isVisible ? handleCertMouseLeave : undefined}
                       onClick={isVisible ? (e) => handleBadgeClick(e, cert) : undefined}
-                      style={{ pointerEvents: isVisible ? 'auto' : 'none' }}
                     >
                       {cert && cert.logo && (
                         <img 
@@ -426,7 +426,6 @@ const About = () => {
                       onMouseMove={isVisible ? handleCertMouseMove : undefined}
                       onMouseLeave={isVisible ? handleCertMouseLeave : undefined}
                       onClick={isVisible ? (e) => handleBadgeClick(e, cert) : undefined}
-                      style={{ pointerEvents: isVisible ? 'auto' : 'none' }}
                     >
                       {cert && cert.logo && (
                         <img 
@@ -453,7 +452,6 @@ const About = () => {
                       onMouseMove={isVisible ? handleCertMouseMove : undefined}
                       onMouseLeave={isVisible ? handleCertMouseLeave : undefined}
                       onClick={isVisible ? (e) => handleBadgeClick(e, cert) : undefined}
-                      style={{ pointerEvents: isVisible ? 'auto' : 'none' }}
                     >
                       {cert && cert.logo && (
                         <img 

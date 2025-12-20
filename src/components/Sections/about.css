@@ -237,17 +237,19 @@ h3 {
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  transition: opacity 0.3s ease;
+  transition: all 0.3s ease;
   position: relative;
 }
 
-.cert-item.has-content {
-  cursor: pointer;
+/* All containers get hover state */
+.cert-item:hover {
+  border-color: #96f0e5;
+  transform: scale(1.05);
 }
 
-.cert-item.has-content:hover {
-  border-color: #f4f2e7;
+/* Only containers with content get pointer cursor */
+.cert-item.has-content {
+  cursor: pointer;
 }
 
 /* Logo inside container - controls visibility */
@@ -261,17 +263,6 @@ h3 {
 .cert-logo.hidden {
   opacity: 0;
   pointer-events: none;
-}
-
-.cert-item:not(.filtered-out):hover {
-  border-color: #96f0e5;
-  transform: scale(1.05);
-}
-
-.cert-logo {
-  max-width: 80%;
-  max-height: 80%;
-  object-fit: contain;
 }
 
 /* Certificate Hover Overlay */
@@ -388,13 +379,13 @@ h3 {
 .cert-modal-content {
   position: relative;
   background: #151515;
-  padding: 32px;
+  padding: 24px;
   max-width: 30vw;
   max-height: 90vh;
   overflow: auto;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 18px;
   border: 1px solid #4C4C4A;
   opacity: 0;
   transform: scale(0.95);
@@ -410,22 +401,25 @@ h3 {
 
 .cert-modal-close {
   position: absolute;
-  top: 16px;
-  right: 16px;
-  width: 32px;
-  height: 32px;
-  background: transparent;
-  border: 1px solid #f4f2e7;
+  top: 32px;
+  right: 32px;
+  width: 20px;
+  height: 20px;
+  background: #151515;
+  border: 1px solid #151515;
   cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   transition: background 0.2s ease;
   z-index: 10;
 }
 
 .cert-modal-close:hover {
-  background: rgba(244, 242, 231, 0.1);
+  background: transparent;
+  path {
+    stroke: #151515;
+  }
 }
 
 .cert-modal-image {
