@@ -235,7 +235,7 @@ const Project = () => {
           </div>
           <div className='see-more-button-container'>
             <SeeMoreButton 
-              onClick={() => console.log('See more projects clicked')}
+              to="/projects"
               className={hasAnimated ? 'animate-enter' : ''}
               style={{ animationDelay: '2s' }}
             />

@@ -1,7 +1,8 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './SeeMoreButton.css';
 
-const SeeMoreButton = ({ onClick, children = "See More Projects", href, className = '', style = {} }) => {
+const SeeMoreButton = ({ onClick, children = "See More Projects", href, to, className = '', style = {} }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const defaultIcon = (
@@ -40,6 +41,19 @@ const SeeMoreButton = ({ onClick, children = "See More Projects", href, classNam
       </div>
     </>
   );
+
+  // If 'to' prop provided, render as React Router Link
+  if (to) {
+    return (
+      <Link 
+        {...buttonProps}
+        to={to}
+        role="button"
+      >
+        {content}
+      </Link>
+    );
+  }
 
   // If href is provided, render as anchor tag
   if (href) {
