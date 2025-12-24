@@ -180,6 +180,7 @@ const Project = () => {
               category="AI System"
               date="Nov 2025"
               status="In progress"
+              description="The K-WISE kiosk system addressed slow, manual in-store assistance and frequent compatibility questions during PC builds."
               categoryColor="#66EECC"
               svgSrc={kwiseSkeleton}
               onClick={() => console.log('K-Wise clicked')}
@@ -191,6 +192,7 @@ const Project = () => {
               category="Prototype"
               date="Sept 2025"
               status="Completed"
+              description="A modern e-commerce prototype for anime merchandise, focusing on clean UI and seamless user experience."
               categoryColor="#FF6B6B"
               svgSrc={kitsuneSkeleton}
               onClick={() => console.log('Kitsune clicked')}
@@ -202,6 +204,7 @@ const Project = () => {
               category="Management System"
               date="In progress"
               status="In progress"
+              description="HUBITS centralizes ITS admin by streamlining data, users, finances, documents, and reports with integrated AI tools."
               categoryColor="#4ECDC4"
               onClick={() => console.log('HUBITS clicked')}
               className={hasAnimated ? 'animate-enter' : ''}
@@ -212,6 +215,7 @@ const Project = () => {
               category="Website"
               date="In progress"
               status="In progress"
+              description="An interactive web platform showcasing ITS facilities, services, and campus information for students and visitors."
               categoryColor="#FFD93D"
               onClick={() => console.log('ITS Explorer clicked')}
               className={hasAnimated ? 'animate-enter' : ''}
@@ -222,6 +226,7 @@ const Project = () => {
               category="Website"
               date="Coming soon..."
               status="Coming soon"
+              description="An intelligent PC building tool that helps users select compatible components and build their perfect computer system."
               categoryColor="#FFD93D"
               onClick={() => console.log('PC Wise clicked')}
               className={hasAnimated ? 'animate-enter' : ''}

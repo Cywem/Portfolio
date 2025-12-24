@@ -183,38 +183,30 @@ h1, h2, p {
   align-items: stretch;
   gap: 32px;
   align-self: stretch;
-  padding: 84px 32px;
-
+  padding: 84px 84px;
   border-left: 1px solid #4C4C4A;
   border-right: 1px solid #4C4C4A;  
 }
 
 
 
-/* Flexbox Project Layout - Exactly 3 cards per row on desktop */
+/* Grid Project Layout - 3 cards per row, stretching to fill container */
 .project-grid {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 32px;
   width: 100%;
+  align-items: start;
 }
 
 .project-grid > * {
-  /* 3 cards per row: 32% width allows room for 2 gaps of 32px each */
-  flex: 0 0 30%;
-  max-width: 30%;
-  width: 30%;
+  width: 100%;
 }
 
 /* Responsive: 2 columns on tablets and medium screens */
-@media (max-width: 1200px) {
-  .project-grid > * {
-    /* 2 cards per row: 48% width allows room for 1 gap of 32px */
-    flex: 0 0 48%;
-    max-width: 48%;
-    width: 48%;
+@media (max-width: 1400px) {
+  .project-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
   
   .project-content-container {
@@ -223,15 +215,14 @@ h1, h2, p {
 }
 
 /* Responsive: Single column on mobile */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .project-grid {
-    gap: 24px;
+    grid-template-columns: 1fr;
+    width: 100%;
   }
   
   .project-grid > * {
-    /* 1 card per row: full width */
-    flex: 0 0 100%;
-    max-width: 100%;
+    width: 100%;
   }
   
   .project-content-container {
