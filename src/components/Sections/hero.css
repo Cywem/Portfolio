@@ -163,7 +163,6 @@ h1, p {
 }
 
 .animate-slide-up {
-  opacity: 0;
   animation: slideUpFade 0.8s ease forwards;
 }
 
@@ -178,7 +177,6 @@ h1, p {
 }
 
 .animate-fade-in {
-  opacity: 0;
   animation: fadeIn 1s ease forwards;
   animation-delay: 0.3s;
 }

@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import './about.css';
 import DecryptedText from '../UI/DecryptedText';
 import { certifications } from '../../data/certificationsData';
+import { animationRegistry } from '../../state/animationRegistry';
 
 // Import organization logos for affiliations
 import itsLogo from '../../assets/images/logos/ITS-logo.svg';
@@ -18,18 +19,10 @@ const About = () => {
   const [hoveredCert, setHoveredCert] = useState(null);
   const [overlayPosition, setOverlayPosition] = useState({ x: 0, y: 0 });
   const [expandedCert, setExpandedCert] = useState(null);
-  const [isCertificationsVisible, setIsCertificationsVisible] = useState(() => {
-    return sessionStorage.getItem('certsAnimated') === 'true';
-  });
-  const [isAffiliationsVisible, setIsAffiliationsVisible] = useState(() => {
-    return sessionStorage.getItem('affiliationsAnimated') === 'true';
-  });
-  const [isAwardsVisible, setIsAwardsVisible] = useState(() => {
-    return sessionStorage.getItem('awardsAnimated') === 'true';
-  });
-  const [isAboutLeftVisible, setIsAboutLeftVisible] = useState(() => {
-    return sessionStorage.getItem('aboutAnimated') === 'true';
-  });
+  const [isCertificationsVisible, setIsCertificationsVisible] = useState(animationRegistry.certifications);
+  const [isAffiliationsVisible, setIsAffiliationsVisible] = useState(animationRegistry.affiliations);
+  const [isAwardsVisible, setIsAwardsVisible] = useState(animationRegistry.awards);
+  const [isAboutLeftVisible, setIsAboutLeftVisible] = useState(animationRegistry.aboutLeft);
 
   const certificationsRef = useRef(null);
   const leadershipRef = useRef(null);
@@ -137,14 +130,16 @@ const About = () => {
   // Scroll-triggered reveal animation for about-left
   useEffect(() => {
     // Skip if already animated in this session
-    if (isAboutLeftVisible) return;
+    if (animationRegistry.aboutLeft) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting && !isAboutLeftVisible) {
-            setIsAboutLeftVisible(true);
-            sessionStorage.setItem('aboutAnimated', 'true');
+          if (entry.isIntersecting && !animationRegistry.aboutLeft) {
+            requestAnimationFrame(() => {
+              setIsAboutLeftVisible(true);
+              animationRegistry.aboutLeft = true;
+            });
           }
         });
       },
@@ -160,24 +155,29 @@ const About = () => {
     return () => {
       if (leftRef) observer.unobserve(leftRef);
     };
-  }, [isAboutLeftVisible]);
+  }, []);
 
   // Scroll-triggered reveal animation for all content sections
   useEffect(() => {
+    // Skip observation entirely if all animations already completed
+    if (animationRegistry.certifications && animationRegistry.affiliations && animationRegistry.awards) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            if (entry.target === certificationsContentRef.current && !isCertificationsVisible) {
-              setIsCertificationsVisible(true);
-              sessionStorage.setItem('certsAnimated', 'true');
-            } else if (entry.target === affiliationsContentRef.current && !isAffiliationsVisible) {
-              setIsAffiliationsVisible(true);
-              sessionStorage.setItem('affiliationsAnimated', 'true');
-            } else if (entry.target === awardsContentRef.current && !isAwardsVisible) {
-              setIsAwardsVisible(true);
-              sessionStorage.setItem('awardsAnimated', 'true');
-            }
+            requestAnimationFrame(() => {
+              if (entry.target === certificationsContentRef.current && !animationRegistry.certifications) {
+                setIsCertificationsVisible(true);
+                animationRegistry.certifications = true;
+              } else if (entry.target === affiliationsContentRef.current && !animationRegistry.affiliations) {
+                setIsAffiliationsVisible(true);
+                animationRegistry.affiliations = true;
+              } else if (entry.target === awardsContentRef.current && !animationRegistry.awards) {
+                setIsAwardsVisible(true);
+                animationRegistry.awards = true;
+              }
+            });
           }
         });
       },
@@ -191,16 +191,17 @@ const About = () => {
     const affRef = affiliationsContentRef.current;
     const awardRef = awardsContentRef.current;
 
-    if (certRef) observer.observe(certRef);
-    if (affRef) observer.observe(affRef);
-    if (awardRef) observer.observe(awardRef);
+    // Only observe elements that haven't animated yet
+    if (certRef && !animationRegistry.certifications) observer.observe(certRef);
+    if (affRef && !animationRegistry.affiliations) observer.observe(affRef);
+    if (awardRef && !animationRegistry.awards) observer.observe(awardRef);
 
     return () => {
       if (certRef) observer.unobserve(certRef);
       if (affRef) observer.unobserve(affRef);
       if (awardRef) observer.unobserve(awardRef);
     };
-  }, [isCertificationsVisible, isAffiliationsVisible, isAwardsVisible]);
+  }, []);
 
   // Mouse tracking for hover overlay - follows cursor
   const updateOverlayPosition = (e) => {

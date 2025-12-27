@@ -38,7 +38,7 @@ export const projectsData = [
     status: "In progress",
     timestamp: new Date('2025-12-20'),
     description: "An interactive web platform showcasing ITS facilities, services, and campus information for students and visitors.",
-    categoryColor: "#FFD93D",
+    categoryColor: "#F26C37",
   },
   {
     title: "PC Wise - PC Builder",

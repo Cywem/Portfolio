@@ -4,27 +4,28 @@ import ProjectCard from '../UI/ProjectCard';
 import DecryptedText from '../UI/DecryptedText';
 import SeeMoreButton from '../UI/SeeMoreButton';
 import { projectsData } from '../../data/projectsData';
+import { animationRegistry } from '../../state/animationRegistry';
 
 const Project = () => {
   const marqueeTrackRef = useRef(null);
   const marqueeAnimationRef = useRef(null);
   const marqueePositionRef = useRef(0);
   const projectHeaderRef = useRef(null);
-  const [hasAnimated, setHasAnimated] = useState(() => {
-    return sessionStorage.getItem('projectAnimated') === 'true';
-  });
+  const [hasAnimated, setHasAnimated] = useState(animationRegistry.projectsIntro);
 
   // Intersection Observer for entrance animation
   useEffect(() => {
     // Skip if already animated in this session
-    if (hasAnimated) return;
+    if (animationRegistry.projectsIntro) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting && !hasAnimated) {
-            setHasAnimated(true);
-            sessionStorage.setItem('projectAnimated', 'true');
+          if (entry.isIntersecting && !animationRegistry.projectsIntro) {
+            requestAnimationFrame(() => {
+              setHasAnimated(true);
+              animationRegistry.projectsIntro = true;
+            });
           }
         });
       },
@@ -40,7 +41,7 @@ const Project = () => {
     return () => {
       if (headerRef) observer.unobserve(headerRef);
     };
-  }, [hasAnimated]);
+  }, []);
 
   useEffect(() => {
     const track = marqueeTrackRef.current;

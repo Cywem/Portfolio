@@ -1,9 +1,10 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import Lottie from 'lottie-react';
 import './hero.css';
 import DownloadButton from '../UI/DownloadButton';
 import ASCIIText from '../UI/ASCIIText';
 import DecryptedText from '../UI/DecryptedText';
+import { animationRegistry } from '../../state/animationRegistry';
 
 import githubAnimation from '../../assets/icons/github.json';
 import linkedinAnimation from '../../assets/icons/linkedin.json';
@@ -21,6 +22,17 @@ const Hero = () => {
   const linkedinTimeoutRef = useRef(null);
   const [showPicture, setShowPicture] = useState(false);
   const [picturePosition, setPicturePosition] = useState({ x: 0, y: 0 });
+  const [hasAnimated, setHasAnimated] = useState(animationRegistry.hero);
+
+  useEffect(() => {
+    // Trigger animation only if not already played in this session
+    if (animationRegistry.hero) return;
+
+    requestAnimationFrame(() => {
+      setHasAnimated(true);
+      animationRegistry.hero = true;
+    });
+  }, []);
 
   const updatePicturePosition = (e) => {
     const overlayWidth = 200;
@@ -52,7 +64,7 @@ const Hero = () => {
             planeBaseHeight={20}
           />
         </div>
-        <div className="hero-subtitle animate-fade-in">
+        <div className={`hero-subtitle ${hasAnimated ? 'animate-fade-in' : ''}`}>
           <h1 className='job-title'>
             <DecryptedText 
               text="Front-End Developer"
@@ -62,7 +74,7 @@ const Hero = () => {
               animateOn="view"
             />
           </h1>
-          <p className='job-summary animate-slide-up' style={{ animationDelay: '0.5s' }}>Im <span 
+          <p className={`job-summary ${hasAnimated ? 'animate-slide-up' : ''}`} style={{ animationDelay: '0.5s' }}>Im <span 
             className='name-hover'
             onMouseEnter={(e) => {
               setShowPicture(true);
@@ -71,9 +83,9 @@ const Hero = () => {
             onMouseMove={updatePicturePosition}
             onMouseLeave={() => setShowPicture(false)}
           >Kent Cyrem Patasin</span> I focus on <span className='skill-highlight'>Web Development</span>, <span className='skill-highlight'>Prototyping</span>, <span className='skill-highlight'>Wireframing</span> & <span className='skill-highlight'>UI/UX Design</span>, creating interfaces that are clear, functional, and easy to use.</p>
-          <p className='location animate-slide-up' style={{ animationDelay: '0.7s' }}>Calamba, Philippines</p>
+          <p className={`location ${hasAnimated ? 'animate-slide-up' : ''}`} style={{ animationDelay: '0.7s' }}>Calamba, Philippines</p>
           
-          <div className='find-me-container animate-slide-up' style={{ animationDelay: '0.9s' }}>
+          <div className={`find-me-container ${hasAnimated ? 'animate-slide-up' : ''}`} style={{ animationDelay: '0.9s' }}>
             <p>YOU CAN FIND ME</p>
             <div className='find-me-icon-container'>
               <a 
@@ -145,7 +157,7 @@ const Hero = () => {
             </div>
           </div>
 
-          <div className='animate-slide-up' style={{ animationDelay: '1.1s' }}>
+          <div className={hasAnimated ? 'animate-slide-up' : ''} style={{ animationDelay: '1.1s' }}>
             <DownloadButton 
               href={cvFile}
             />

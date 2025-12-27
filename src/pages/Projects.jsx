@@ -3,22 +3,23 @@ import { Link } from 'react-router-dom';
 import ProjectCard from '../components/UI/ProjectCard';
 import { projectsData } from '../data/projectsData';
 import Footer from '../components/Sections/Footer';
+import { animationRegistry } from '../state/animationRegistry';
 import './projects.css';
 
 const Projects = () => {
-  const [hasAnimated, setHasAnimated] = useState(false);
+  const [hasAnimated, setHasAnimated] = useState(animationRegistry.projectsPage);
   const [activeFilter, setActiveFilter] = useState('All');
-  const [sortOrder, setSortOrder] = useState('latest'); // 'latest' or 'oldest'
+  const [sortOrder, setSortOrder] = useState('latest');
   const [searchQuery, setSearchQuery] = useState('');
   const [searchSuggestions, setSearchSuggestions] = useState([]);
 
   useEffect(() => {
-    // Scroll to top when component mounts
-    window.scrollTo(0, 0);
+    // Trigger animation only if not already played in this session
+    if (animationRegistry.projectsPage) return;
 
-    // Trigger animation after mount with RAF to avoid cascading renders
     requestAnimationFrame(() => {
       setHasAnimated(true);
+      animationRegistry.projectsPage = true;
     });
   }, []);
 
