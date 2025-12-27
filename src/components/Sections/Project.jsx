@@ -3,8 +3,7 @@ import './Project.css';
 import ProjectCard from '../UI/ProjectCard';
 import DecryptedText from '../UI/DecryptedText';
 import SeeMoreButton from '../UI/SeeMoreButton';
-import kwiseSkeleton from '../../assets/images/kwise_skeleton.svg';
-import kitsuneSkeleton from '../../assets/images/kitsune_skeleton.svg';
+import { projectsData } from '../../data/projectsData';
 
 const Project = () => {
   const marqueeTrackRef = useRef(null);
@@ -181,63 +180,21 @@ const Project = () => {
         <div className='project-content-container'>
 
           <div className='project-grid'>
-            <ProjectCard
-              title="K-Wise"
-              category="AI System"
-              date="Nov 2025"
-              status="In progress"
-              description="The K-WISE kiosk system addressed slow, manual in-store assistance and frequent compatibility questions during PC builds."
-              categoryColor="#66EECC"
-              svgSrc={kwiseSkeleton}
-              onClick={() => console.log('K-Wise clicked')}
-              className={hasAnimated ? 'animate-enter' : ''}
-              style={{ animationDelay: '1s' }}
-            />
-            <ProjectCard
-              title="Kitsune"
-              category="Prototype"
-              date="Sept 2025"
-              status="Completed"
-              description="A modern e-commerce prototype for anime merchandise, focusing on clean UI and seamless user experience."
-              categoryColor="#FF6B6B"
-              svgSrc={kitsuneSkeleton}
-              onClick={() => console.log('Kitsune clicked')}
-              className={hasAnimated ? 'animate-enter' : ''}
-              style={{ animationDelay: '1.2s' }}
-            />
-            <ProjectCard
-              title="HUBITS"
-              category="Management System"
-              date="In progress"
-              status="In progress"
-              description="HUBITS centralizes ITS admin by streamlining data, users, finances, documents, and reports with integrated AI tools."
-              categoryColor="#4ECDC4"
-              onClick={() => console.log('HUBITS clicked')}
-              className={hasAnimated ? 'animate-enter' : ''}
-              style={{ animationDelay: '1.4s' }}
-            />
-            <ProjectCard
-              title="ITS Explorer"
-              category="Website"
-              date="In progress"
-              status="In progress"
-              description="An interactive web platform showcasing ITS facilities, services, and campus information for students and visitors."
-              categoryColor="#FFD93D"
-              onClick={() => console.log('ITS Explorer clicked')}
-              className={hasAnimated ? 'animate-enter' : ''}
-              style={{ animationDelay: '1.6s' }}
-            />
-            <ProjectCard
-              title="PC Wise - PC Builder"
-              category="Website"
-              date="Coming soon..."
-              status="Coming soon"
-              description="An intelligent PC building tool that helps users select compatible components and build their perfect computer system."
-              categoryColor="#FFD93D"
-              onClick={() => console.log('PC Wise clicked')}
-              className={hasAnimated ? 'animate-enter' : ''}
-              style={{ animationDelay: '1.8s' }}
-            />
+            {projectsData.slice(0, 5).map((project, index) => (
+              <ProjectCard
+                key={project.title}
+                title={project.title}
+                category={project.category}
+                date={project.date}
+                status={project.status}
+                description={project.description}
+                categoryColor={project.categoryColor}
+                svgSrc={project.svgSrc}
+                onClick={() => console.log(`${project.title} clicked`)}
+                className={hasAnimated ? 'animate-enter' : ''}
+                style={{ animationDelay: `${1 + index * 0.2}s` }}
+              />
+            ))}
           </div>
           <div className='see-more-button-container'>
             <SeeMoreButton 
