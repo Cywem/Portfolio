@@ -22,7 +22,7 @@ const Navigation = () => {
             KC
           </button>
           <a
-            href="https://www.linkedin.com"
+            href="https://www.linkedin.com/in/kent-cyrem"
             target="_blank"
             rel="noreferrer"
             className="button-linked-in"
@@ -34,7 +34,7 @@ const Navigation = () => {
             />
           </a>
           <a
-            href="https://github.com"
+            href="https://github.com/Cywem"
             target="_blank"
             rel="noreferrer"
             className="button-github"
