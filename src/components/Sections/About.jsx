@@ -18,10 +18,18 @@ const About = () => {
   const [hoveredCert, setHoveredCert] = useState(null);
   const [overlayPosition, setOverlayPosition] = useState({ x: 0, y: 0 });
   const [expandedCert, setExpandedCert] = useState(null);
-  const [isCertificationsVisible, setIsCertificationsVisible] = useState(false);
-  const [isAffiliationsVisible, setIsAffiliationsVisible] = useState(false);
-  const [isAwardsVisible, setIsAwardsVisible] = useState(false);
-  const [isAboutLeftVisible, setIsAboutLeftVisible] = useState(false);
+  const [isCertificationsVisible, setIsCertificationsVisible] = useState(() => {
+    return sessionStorage.getItem('certsAnimated') === 'true';
+  });
+  const [isAffiliationsVisible, setIsAffiliationsVisible] = useState(() => {
+    return sessionStorage.getItem('affiliationsAnimated') === 'true';
+  });
+  const [isAwardsVisible, setIsAwardsVisible] = useState(() => {
+    return sessionStorage.getItem('awardsAnimated') === 'true';
+  });
+  const [isAboutLeftVisible, setIsAboutLeftVisible] = useState(() => {
+    return sessionStorage.getItem('aboutAnimated') === 'true';
+  });
 
   const certificationsRef = useRef(null);
   const leadershipRef = useRef(null);
@@ -128,11 +136,15 @@ const About = () => {
 
   // Scroll-triggered reveal animation for about-left
   useEffect(() => {
+    // Skip if already animated in this session
+    if (isAboutLeftVisible) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting && !isAboutLeftVisible) {
             setIsAboutLeftVisible(true);
+            sessionStorage.setItem('aboutAnimated', 'true');
           }
         });
       },
@@ -158,10 +170,13 @@ const About = () => {
           if (entry.isIntersecting) {
             if (entry.target === certificationsContentRef.current && !isCertificationsVisible) {
               setIsCertificationsVisible(true);
+              sessionStorage.setItem('certsAnimated', 'true');
             } else if (entry.target === affiliationsContentRef.current && !isAffiliationsVisible) {
               setIsAffiliationsVisible(true);
+              sessionStorage.setItem('affiliationsAnimated', 'true');
             } else if (entry.target === awardsContentRef.current && !isAwardsVisible) {
               setIsAwardsVisible(true);
+              sessionStorage.setItem('awardsAnimated', 'true');
             }
           }
         });
