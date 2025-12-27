@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { saveHomeScroll } from '../../state/scrollMemory';
 import './Project.css';
 import ProjectCard from '../UI/ProjectCard';
 import DecryptedText from '../UI/DecryptedText';
@@ -199,6 +200,7 @@ const Project = () => {
           </div>
           <div className='see-more-button-container'>
             <SeeMoreButton 
+              onClick={saveHomeScroll}
               to="/projects"
               className={hasAnimated ? 'animate-enter' : ''}
               style={{ animationDelay: '2s' }}
