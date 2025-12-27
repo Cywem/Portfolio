@@ -11,15 +11,21 @@ const Project = () => {
   const marqueeAnimationRef = useRef(null);
   const marqueePositionRef = useRef(0);
   const projectHeaderRef = useRef(null);
-  const [hasAnimated, setHasAnimated] = useState(false);
+  const [hasAnimated, setHasAnimated] = useState(() => {
+    return sessionStorage.getItem('projectAnimated') === 'true';
+  });
 
   // Intersection Observer for entrance animation
   useEffect(() => {
+    // Skip if already animated in this session
+    if (hasAnimated) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting && !hasAnimated) {
             setHasAnimated(true);
+            sessionStorage.setItem('projectAnimated', 'true');
           }
         });
       },
