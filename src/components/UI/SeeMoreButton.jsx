@@ -48,6 +48,7 @@ const SeeMoreButton = ({ onClick, children = "See More Projects", href, to, clas
       <Link 
         {...buttonProps}
         to={to}
+        state={{ from: 'home' }}
         role="button"
       >
         {content}

@@ -8,6 +8,12 @@ export const animationRegistry = {
   awards: false,
   aboutLeft: false,
   projectsPage: false,
+  // Case study animations
+  caseStudyHeader: false,
+  caseStudyHero: false,
+  caseStudyFeatures: false,
+  caseStudyGallery: false,
+  caseStudyResults: false,
 };
 
 // Reset function for testing (call on page refresh)

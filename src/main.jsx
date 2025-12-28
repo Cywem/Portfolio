@@ -6,6 +6,7 @@ import Navigation from './components/Layout/navigation.jsx';
 import ScrollManager from './components/ScrollManager.jsx';
 import Home from './pages/Home.jsx';
 import Projects from './pages/Projects.jsx';
+import ProjectCaseStudy from './pages/ProjectCaseStudy.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -15,6 +16,7 @@ createRoot(document.getElementById('root')).render(
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/projects" element={<Projects />} />
+        <Route path="/projects/:slug" element={<ProjectCaseStudy />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,

@@ -45,14 +45,19 @@
   font-size: 16px;
   font-weight: 400;
   text-decoration: none;
-  padding: 8px 16px;
   transition: all 0.3s ease;
   align-self: flex-start;
   z-index: 1;
+  path {
+    transition: stroke 0.4s ease;
+  }
 }
 
 .back-button:hover {
   color: #F4F2E7;
+  path {
+    stroke: #F4F2E7;
+  }
 }
 
 .back-button svg {

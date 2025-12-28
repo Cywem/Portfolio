@@ -1,6 +1,7 @@
 /* Project Card Component - Flexible width, content-driven height */
 .project-card {
   position: relative;
+  display: block;
   width: 100%;
   min-height: 517px;
   border: 1px solid #4C4C4A;
@@ -12,6 +13,8 @@
   --category-color: #84837F;
   opacity: 0;
   transform: translateY(20px);
+  text-decoration: none;
+  color: inherit;
 }
 
 .project-card:hover {

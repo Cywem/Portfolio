@@ -1,23 +1,23 @@
+import { Link } from 'react-router-dom';
 import './ProjectCard.css';
 
 const ProjectCard = ({ 
+  slug,
   title, 
   category, 
   date, 
   status,
   description,
   categoryColor,
+  hasCaseStudy,
+  from,
   onClick,
   svgSrc,
   className = '',
   style = {}
 }) => {
-  return (
-    <article 
-      className={`project-card ${className}`}
-      onClick={onClick}
-      style={{ '--category-color': categoryColor, ...style }}
-    >
+  const cardContent = (
+    <>
       <div className="project-card-inner">
         {/* Display Section - Wireframe/Mockup */}
         <div className="project-card-visual">
@@ -64,6 +64,29 @@ const ProjectCard = ({
           )}
         </div>
       </div>
+    </>
+  );
+
+  if (hasCaseStudy && slug) {
+    return (
+      <Link 
+        to={`/projects/${slug}`}
+        state={{ from: from || 'projects' }}
+        className={`project-card ${className}`}
+        style={{ '--category-color': categoryColor, ...style }}
+      >
+        {cardContent}
+      </Link>
+    );
+  }
+
+  return (
+    <article 
+      className={`project-card ${className}`}
+      onClick={onClick}
+      style={{ '--category-color': categoryColor, ...style }}
+    >
+      {cardContent}
     </article>
   );
 };

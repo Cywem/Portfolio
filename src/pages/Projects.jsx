@@ -91,8 +91,9 @@ const Projects = () => {
           <div className='header-container'>
             <div className="title-container">
               <Link to="/" className="back-button">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M15 8H1M1 8L8 1M1 8L8 15" stroke="#F4F2E7" strokeWidth="2" strokeLinecap="square"/>
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13" fill="none">
+                  <path d="M5.72781 0.320185L0.308893 5.73239C0.210225 5.83533 0.13288 5.95672 0.0812984 6.0896C-0.0270995 6.35313 -0.0270995 6.64872 0.0812984 6.91225C0.13288 7.04512 0.210225 7.16651 0.308893 7.26946L5.72781 12.6817C5.82886 12.7826 5.94883 12.8626 6.08086 12.9173C6.21288 12.9719 6.35439 13 6.4973 13C6.78591 13 7.06271 12.8855 7.26679 12.6817C7.47087 12.4778 7.58552 12.2014 7.58552 11.9131C7.58552 11.6249 7.47087 11.3484 7.26679 11.1446L3.6903 7.58336L11.9162 7.58336C12.2037 7.58336 12.4793 7.46932 12.6826 7.26632C12.8858 7.06333 13 6.788 13 6.50092C13 6.21384 12.8858 5.93852 12.6826 5.73552C12.4793 5.53252 12.2037 5.41848 11.9162 5.41848L3.6903 5.41848L7.26679 1.85725C7.36837 1.75662 7.44899 1.6369 7.50402 1.505C7.55904 1.37309 7.58737 1.23161 7.58737 1.08872C7.58737 0.945823 7.55904 0.804342 7.50402 0.672437C7.44899 0.540531 7.36837 0.420812 7.26679 0.320185C7.16603 0.21873 7.04617 0.138201 6.9141 0.0832472C6.78203 0.0282927 6.64037 0 6.4973 0C6.35423 0 6.21257 0.0282927 6.0805 0.0832472C5.94843 0.138201 5.82856 0.21873 5.72781 0.320185Z" 
+                  fill="#84837F"/>
                 </svg>
                 <span>Back to Home</span>
               </Link>
@@ -216,13 +217,16 @@ const Projects = () => {
             <div className="projects-page-grid">
               {filteredProjects.map((project, index) => (
                 <ProjectCard
-                  key={project.title}
+                  key={project.slug || project.title}
+                  slug={project.slug}
                   title={project.title}
                   category={project.category}
                   date={project.date}
                   description={project.description}
                   categoryColor={project.categoryColor}
                   svgSrc={project.svgSrc}
+                  hasCaseStudy={project.hasCaseStudy}
+                  from="projects"
                   onClick={() => console.log(`${project.title} clicked`)}
                   className={hasAnimated ? 'animate-enter' : ''}
                   style={{ animationDelay: `${0.2 + index * 0.1}s` }}

@@ -184,7 +184,8 @@ const Project = () => {
           <div className='project-grid'>
             {projectsData.slice(0, 5).map((project, index) => (
               <ProjectCard
-                key={project.title}
+                key={project.slug || project.title}
+                slug={project.slug}
                 title={project.title}
                 category={project.category}
                 date={project.date}
@@ -192,9 +193,11 @@ const Project = () => {
                 description={project.description}
                 categoryColor={project.categoryColor}
                 svgSrc={project.svgSrc}
+                hasCaseStudy={project.hasCaseStudy}
+                from="home"
                 onClick={() => console.log(`${project.title} clicked`)}
                 className={hasAnimated ? 'animate-enter' : ''}
-                style={{ animationDelay: `${1 + index * 0.2}s` }}
+                style={{ animationDelay: `${1 + index * 0.1}s` }}
               />
             ))}
           </div>
@@ -203,7 +206,7 @@ const Project = () => {
               onClick={saveHomeScroll}
               to="/projects"
               className={hasAnimated ? 'animate-enter' : ''}
-              style={{ animationDelay: '2s' }}
+              style={{ animationDelay: '1s' }}
             />
           </div>
           

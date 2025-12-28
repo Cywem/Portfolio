@@ -1,0 +1,53 @@
+.project-case-study {
+  width: 100%;
+  min-height: 100vh;
+  background: #0F0E0C;
+  padding-top: 0;
+}
+
+/* Back Button */
+.back-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #84837F;
+  text-decoration: none;
+  font-family: 'Space Mono', monospace;
+  font-size: 16px;
+  font-weight: 400;
+  transition: all 0.3s ease;
+  background: transparent;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.back-button:hover {
+  color: #F4F2E7;
+}
+
+.back-button svg {
+  transition: transform 0.3s ease;
+}
+
+.back-button:hover svg {
+  transform: translateX(-4px);
+}
+
+.back-button svg path {
+  transition: stroke 0.3s ease;
+}
+
+.back-button:hover svg path {
+  fill: #F4F2E7;
+}
+
+@media (max-width: 768px) {
+  .project-case-study {
+    padding-top: 60px;
+  }
+
+  .back-button {
+    font-size: 13px;
+    padding: 10px 20px;
+  }
+}
