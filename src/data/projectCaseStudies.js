@@ -19,56 +19,166 @@ export const projectCaseStudies = {
       {
         type: "content",
         heading: "PROJECT CONTEXT",
-        text: "The K-WISE kiosk system addressed slow, manual in-store assistance and frequent compatibility questions during PC builds. The goal was to provide customers with instant, AI-powered recommendations while reducing staff workload and improving the in-store experience."
-      },
-      {
-        type: "content",
-        heading: "MY ROLE",
-        text: "I served as the lead developer and UI designer for K-WISE. I was responsible for developing the kiosk interface, implementing the AI recommendation engine, and designing the entire user experience from initial wireframes to final implementation."
-      },
-      {
-        type: "content",
-        heading: "PROCESS",
-        text: "I developed a kiosk interface that guides users through component selection using machine learning algorithms. The system checks compatibility in real-time and suggests optimal configurations based on budget and performance needs. The development process involved user research, prototyping, algorithm training, and iterative testing with actual customers."
+        intro: "The K-WISE kiosk system addressed slow, manual in-store assistance and frequent compatibility questions during PC builds.",
+        sections: [
+          {
+            subheading: "Problems identified",
+            items: [
+              "Long queues during peak hours.",
+              "Manual part checking that depended on staff availability.",
+              "Inconsistent build advice for budget-based or purpose-based setups"
+            ]
+          },
+          {
+            subheading: "What was built",
+            items: [
+              "A kiosk-first experience placed inside the store.",
+              "Guided flows for components, full builds, upgrades, and services.",
+              "AI-assisted suggestions backed by rule-based compatibility checks."
+            ]
+          },
+          {
+            subheading: "What was intentionally excluded",
+            items: [
+              "Pricing logic, scoring formulas, and internal rules.",
+              "External inventory syncing details.",
+              "Proprietary data structures."
+            ]
+          }
+        ]
       },
       {
         type: "features",
         heading: "KEY FEATURES",
-        items: [
-          "Real-time component compatibility checking",
-          "AI-powered build optimization based on user requirements",
-          "Budget-aware recommendations with price comparisons",
-          "Interactive touch interface optimized for kiosk hardware",
-          "Standardized recommendation system for consistent service",
-          "Performance benchmarking and comparison tools"
-        ]
-      },
-      {
-        type: "gallery",
-        images: [
-          "/assets/kwise/screen-1.png",
-          "/assets/kwise/screen-2.png",
-          "/assets/kwise/screen-3.png",
-          "/assets/kwise/screen-4.png",
-          "/assets/kwise/screen-5.png",
-          "/assets/kwise/screen-6.png"
-        ]
+        intro: "The K-WISE kiosk system focused on clarity, speed, and decision support.",
+        subheading: "Core features delivered",
+        columns: [
+          [
+            {
+              number: 1,
+              title: "Component browsing",
+              items: [
+                "Category filters and search.",
+                "Clear specs per part."
+              ]
+            },
+            {
+              number: 2,
+              title: "Compatibility checking",
+              items: [
+                "Real-time flags for incompatible selections.",
+                "Fewer trial-and-error builds."
+              ]
+            },
+            {
+              number: 3,
+              title: "AI-assisted build guidance",
+              items: [
+                "Budget-based and use-case-based suggestions.",
+                "Future upgrades",
+                "Upgrade hints without forcing choices."
+              ]
+            }
+          ],
+          [
+            {
+              number: 4,
+              title: "Build summaries",
+              items: [
+                "Consolidated view of selected parts.",
+                "Price visibility and queue number generation."
+              ]
+            },
+            {
+              number: 5,
+              title: "Queue handling",
+              items: [
+                "Structured order queuing.",
+                "Reduced counter congestion."
+              ]
+            },
+            {
+              number: 6,
+              title: "Admin side",
+              items: [
+                "Inventory updates.",
+                "Order and queue monitoring."
+              ]
+            }
+          ]
+        ],
+        image: "/assets/images/case_study/kwise/keyFeatures.webp"
       },
       {
         type: "results",
-        heading: "OUTCOME",
-        items: [
-          "Reduced customer decision time by 40%",
-          "Improved in-store workflow efficiency by eliminating repetitive consultations",
-          "Decreased compatibility-related returns by 65%",
-          "Increased customer satisfaction scores from 3.2 to 4.6 out of 5",
-          "Generated positive feedback for reducing wait times during peak hours"
+        heading: "RESULTS",
+        intro: "The K-WISE kiosk system was evaluated in-store with staff and customers using standard software quality criteria.",
+        sections: [
+          {
+            number: 1,
+            title: "OPERATIONAL METRICS",
+            items: [
+              {
+                label: "a. Browsing + ordering time",
+                details: ["Reduced by ≈25–35% compared to the manual flow."]
+              },
+              {
+                label: "b. Compatibility-related corrections",
+                details: ["Dropped by ≈40% before checkout."]
+              },
+              {
+                label: "c. Repeat staff inquiries",
+                details: ["Reduced by ≈30% during peak hours."]
+              },
+              {
+                label: "d. Queue congestion",
+                details: ["Fewer bottlenecks observed during simultaneous orders."]
+              }
+            ]
+          },
+          {
+            number: 2,
+            title: "ADOPTION SIGNALS",
+            items: [
+              {
+                label: "a. Non-technical users",
+                details: ["Reported higher confidence after guided build flow."]
+              },
+              {
+                label: "b. Staff",
+                details: [
+                  "Spent less time on basic part checks.",
+                  "Focused more on complex cases."
+                ]
+              }
+            ]
+          }
         ]
       },
       {
-        type: "content",
-        heading: "LEARNINGS",
-        text: "This project taught me the importance of balancing AI automation with human guidance. I learned to design interfaces that feel intuitive even when powered by complex algorithms, and how to present technical information in a user-friendly way. The experience also reinforced the value of iterative testing with real users—several critical UI improvements came directly from observing customer behavior during beta testing."
+        type: "developers",
+        team: [
+          {
+            name: "CHARLOTTE CRUZ",
+            role: "Documentation"
+          },
+          {
+            name: "JAKE MESINA",
+            role: "Front-end Dev."
+          },
+          {
+            name: "KENT CYREM PATASIN",
+            role: "Front-end Dev."
+          },
+          {
+            name: "LUDWIG RIVERA",
+            role: "Back-end Dev."
+          },
+          {
+            name: "DR. REGINA ALMONTE",
+            role: "Mentor"
+          }
+        ]
       }
     ]
   },
@@ -117,12 +227,22 @@ export const projectCaseStudies = {
       },
       {
         type: "results",
-        heading: "OUTCOME",
+        heading: "RESULTS",
         items: [
           "Completed high-fidelity prototype with full interaction flows",
           "Positive user testing feedback with 4.5/5 average rating",
           "Demonstrated modern UI/UX capabilities for portfolio",
           "Received interest from potential clients for similar work"
+        ]
+      },
+      {
+        type: "developers",
+        heading: "DEVELOPERS",
+        team: [
+          {
+            name: "Kent Cyrem Patasin",
+            role: "UI/UX Designer & Prototyper"
+          }
         ]
       }
     ]

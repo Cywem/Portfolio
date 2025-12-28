@@ -7,7 +7,8 @@ import {
   ProjectContent,
   ProjectFeatures,
   ProjectGallery,
-  ProjectResults
+  ProjectResults,
+  ProjectDevelopers
 } from '../components/project/case-study';
 import Footer from '../components/Sections/Footer';
 import './ProjectCaseStudy.css';
@@ -19,6 +20,7 @@ const SECTION_MAP = {
   features: ProjectFeatures,
   gallery: ProjectGallery,
   results: ProjectResults,
+  developers: ProjectDevelopers,
 };
 
 const ProjectCaseStudy = () => {
