@@ -2,7 +2,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './styles/index.css';
-import Navigation from './components/Layout/navigation.jsx';
+import Navigation from './components/Layout/Navigation.jsx';
 import ScrollManager from './components/ScrollManager.jsx';
 import Home from './pages/Home.jsx';
 import Projects from './pages/Projects.jsx';
