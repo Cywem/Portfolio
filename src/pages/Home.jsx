@@ -13,18 +13,26 @@ const Home = () => {
       saveHomeScroll();
     };
 
+    // Use throttle for better performance
     let scrollTimeout;
-    const debouncedHandleScroll = () => {
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(handleScroll, 100);
+    const throttledHandleScroll = () => {
+      if (!scrollTimeout) {
+        scrollTimeout = setTimeout(() => {
+          handleScroll();
+          scrollTimeout = null;
+        }, 150);
+      }
     };
 
-    window.addEventListener('scroll', debouncedHandleScroll);
+    window.addEventListener('scroll', throttledHandleScroll, { passive: true });
 
     return () => {
-      window.removeEventListener('scroll', debouncedHandleScroll);
-      clearTimeout(scrollTimeout);
-      saveHomeScroll(); // Save final position on unmount
+      window.removeEventListener('scroll', throttledHandleScroll);
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
+      // Save final position on unmount
+      saveHomeScroll();
     };
   }, []);
 

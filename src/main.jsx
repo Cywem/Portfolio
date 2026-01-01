@@ -8,6 +8,11 @@ import Home from './pages/Home.jsx';
 import Projects from './pages/Projects.jsx';
 import ProjectCaseStudy from './pages/ProjectCaseStudy.jsx';
 
+// Disable browser's automatic scroll restoration
+if ('scrollRestoration' in window.history) {
+  window.history.scrollRestoration = 'manual';
+}
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>

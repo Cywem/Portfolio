@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { saveHomeScroll } from '../../state/scrollMemory';
 import './ProjectCard.css';
 
 const ProjectCard = ({ 
@@ -72,6 +73,12 @@ const ProjectCard = ({
       <Link 
         to={`/projects/${slug}`}
         state={{ from: from || 'projects' }}
+        onClick={() => {
+          // Save scroll position only if navigating from home
+          if (from === 'home') {
+            saveHomeScroll();
+          }
+        }}
         className={`project-card ${className}`}
         style={{ '--category-color': categoryColor, ...style }}
       >
