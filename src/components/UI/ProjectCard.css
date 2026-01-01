@@ -123,7 +123,7 @@
   justify-content: space-between;
   align-items: center;
   font-family: "Space Mono", monospace;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 400;
 }
 
@@ -148,7 +148,7 @@
 
 .project-title {
   font-family: "Bayon", sans-serif;
-  font-size: 32px;
+  font-size: 46px;
   font-weight: 400;
   color: #F4F2E7;
   margin: 0;

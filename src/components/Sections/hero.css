@@ -12,7 +12,7 @@ h1, p {
     width: 100%;
     border-left: 1px solid #4C4C4A;
     border-right: 1px solid #4C4C4A;
-    padding: 180px 0px 80px 0px;  
+    padding: 73px 0px 80px 0px;  
     
 
     display: flex;
@@ -104,6 +104,10 @@ h1, p {
   align-items: center;
   gap: 32px;
 
+  p{
+    font-size: 18px;
+  }
+
   .find-me-icon-container {
     display: flex;
     align-items: center;
@@ -163,6 +167,7 @@ h1, p {
 }
 
 .animate-slide-up {
+  opacity: 0;
   animation: slideUpFade 0.8s ease forwards;
 }
 
