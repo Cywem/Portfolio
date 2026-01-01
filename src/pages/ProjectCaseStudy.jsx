@@ -63,7 +63,6 @@ const ProjectCaseStudy = () => {
           }
           
           if (!SectionComponent) {
-            console.warn(`Unknown section type: ${section.type}`);
             return null;
           }
 

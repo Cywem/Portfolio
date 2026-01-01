@@ -227,7 +227,6 @@ const Projects = () => {
                   svgSrc={project.svgSrc}
                   hasCaseStudy={project.hasCaseStudy}
                   from="projects"
-                  onClick={() => console.log(`${project.title} clicked`)}
                   className={hasAnimated ? 'animate-enter' : ''}
                   style={{ animationDelay: `${0.2 + index * 0.1}s` }}
                 />
