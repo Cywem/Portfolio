@@ -1,7 +1,6 @@
-import { useEffect, useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Lottie from 'lottie-react';
-import { animationRegistry } from '../../../state/animationRegistry';
 import './projectCaseStudy.css';
 
 import globeAnimation from '../../../assets/icons/globe.json';
@@ -34,8 +33,6 @@ const techIconMap = {
 };
 
 const ProjectHeader = ({ title, subtitle, meta, backPath, backLabel, project }) => {
-  const [hasAnimated, setHasAnimated] = useState(() => animationRegistry.caseStudyHeader);
-  
   // Refs and state for project links hover effects
   const globeRef = useRef(null);
   const githubRef = useRef(null);
@@ -48,15 +45,6 @@ const ProjectHeader = ({ title, subtitle, meta, backPath, backLabel, project }) 
   const globeTimeoutRef = useRef(null);
   const githubTimeoutRef = useRef(null);
   const documentTimeoutRef = useRef(null);
-
-  useEffect(() => {
-    if (hasAnimated) return;
-
-    requestAnimationFrame(() => {
-      setHasAnimated(true);
-      animationRegistry.caseStudyHeader = true;
-    });
-  }, [hasAnimated]);
 
   return (
 
@@ -71,10 +59,10 @@ const ProjectHeader = ({ title, subtitle, meta, backPath, backLabel, project }) 
             <span>{backLabel}</span>
           </Link>
           <div className='project-title-container'>
-            <h1 className={`case-study-title ${hasAnimated ? 'animate-enter' : ''}`}>
+            <h1 className="case-study-title">
               {title}
             </h1>
-            <p className={`case-study-subtitle ${hasAnimated ? 'animate-enter' : ''}`} style={{ animationDelay: '0.1s' }}>
+            <p className="case-study-subtitle">
               {subtitle}
             </p>
           </div>

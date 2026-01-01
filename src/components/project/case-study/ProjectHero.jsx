@@ -1,20 +1,7 @@
-import { useEffect, useState } from 'react';
-import { animationRegistry } from '../../../state/animationRegistry';
 import './projectCaseStudy.css';
 import heroImage from '../../../assets/images/case_study/kwise/header.webp';
 
 const ProjectHero = () => {
-  const [hasAnimated, setHasAnimated] = useState(() => animationRegistry.caseStudyHero);
-
-  useEffect(() => {
-    if (hasAnimated) return;
-
-    requestAnimationFrame(() => {
-      setHasAnimated(true);
-      animationRegistry.caseStudyHero = true;
-    });
-  }, [hasAnimated]);
-
   return (
     <div className="case-study-hero">
       <div className="case-study-hero-container">
@@ -29,7 +16,7 @@ const ProjectHero = () => {
         <img 
           src={heroImage} 
           alt="Project hero" 
-          className={`hero-image ${hasAnimated ? 'animate-enter' : ''}`}
+          className="hero-image"
         />
         <div className="hero-decorations">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
