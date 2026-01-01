@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { saveHomeScroll } from '../../state/scrollMemory';
-import './Project.css';
+import './project.css';
 import ProjectCard from '../UI/ProjectCard';
 import DecryptedText from '../UI/DecryptedText';
 import SeeMoreButton from '../UI/SeeMoreButton';
