@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './navigation.css'
 import RevealText from '../UI/RevealText';
 
 const Navigation = () => {
   const [scrolled, setScrolled] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,11 +17,47 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleLogoClick = (e) => {
+    e.preventDefault();
+    // Clear saved scroll position
+    sessionStorage.removeItem('homeScrollPosition');
+    // If already on home, scroll to top
+    if (location.pathname === '/') {
+      window.scrollTo(0, 0);
+    } else {
+      // Navigate to home (will start at top)
+      navigate('/');
+    }
+  };
+
+  const handleSectionClick = (e, sectionId) => {
+    e.preventDefault();
+    
+    // If on home page, just scroll to section
+    if (location.pathname === '/') {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // Navigate to home first, then scroll to section
+      sessionStorage.removeItem('homeScrollPosition');
+      navigate('/');
+      // Wait for navigation and DOM to be ready
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  };
+
   return (
     <nav className={`nav-bar ${scrolled ? 'scrolled' : ''}`} role="navigation" aria-label="Main Navigation">
       <div className="nav-container">
         <div className="nav-logo-social">
-          <button className="nav-logo" aria-label="site initials">
+          <button className="nav-logo" aria-label="Home" onClick={handleLogoClick}>
             KC
           </button>
           <a
@@ -47,9 +86,9 @@ const Navigation = () => {
           </a>
         </div>
         <div className="nav-pages">
-          <a href="#projects" className="page-link">PROJECTS</a>
-          <a href="#tech-stack" className="page-link">TECH STACK</a>
-          <a href="#about" className="page-link">ABOUT</a>
+          <a href="#projects" className="page-link" onClick={(e) => handleSectionClick(e, 'projects')}>PROJECTS</a>
+          <a href="#tech-stack" className="page-link" onClick={(e) => handleSectionClick(e, 'tech-stack')}>TECH STACK</a>
+          <a href="#about" className="page-link" onClick={(e) => handleSectionClick(e, 'about')}>ABOUT</a>
         </div>
       </div>
     </nav>

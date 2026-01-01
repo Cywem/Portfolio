@@ -37,7 +37,11 @@ const Footer = () => {
       <div className="header-footer">
         <div className='header-footer-container'>
           <div className='footer-title'>
-            <a href="/" onClick={() => window.location.reload()}>KENT CYREM</a>
+            <a href="/" onClick={(e) => {
+              e.preventDefault();
+              sessionStorage.removeItem('homeScrollPosition');
+              window.location.href = '/';
+            }}>KENT CYREM</a>
             <p>© 2026 | All rights reserved.</p>
           </div>
           <div className='footer-socials'>
