@@ -763,13 +763,21 @@ h3 {
 
 /* Awards Responsive: Stack to single column on mobile */
 @media (max-width: 768px) {
+  .awards-grid-container {
+    gap: 16px;
+  }
+
   .awards-grid-row {
     flex-direction: column;
+    gap: 16px;
   }
   
+  .awards-grid-cell,
   .awards-grid-cell.cell-left,
-  .awards-grid-cell.cell-right {
-    border: 1px solid #84837f;
+  .awards-grid-cell.cell-right,
+  .awards-grid-cell.cell-full {
+    padding: 0;
+    border: 1px solid #4C4C4A;
   }
   
   .awards-title {
@@ -777,10 +785,54 @@ h3 {
     flex-direction: column;
     gap: 8px;
   }
+
+  .award-card {
+    flex-direction: row;
+    align-items: center;
+    gap: 14px;
+    padding: 14px;
+  }
+
+  .award-logo-container {
+    width: 64px;
+    height: 64px;
+    border-color: #4C4C4A;
+  }
+
+  .award-logo-container img {
+    width: 48px;
+    height: 48px;
+  }
+
+  .award-badge {
+    order: 3;
+    padding: 3px 8px;
+    font-size: 10px;
+    white-space: nowrap;
+    border-color: #4C4C4A;
+  }
+
+  .award-card-content {
+    min-width: 0;
+    flex: 1;
+  }
   
   .award-card-title {
-    font-size: 20px;
+    font-size: 13px;
+    line-height: 1.35;
+    text-align: left;
     white-space: normal;
+  }
+
+  .award-details {
+    align-items: flex-start;
+    gap: 3px;
+  }
+
+  .award-org-name,
+  .award-date {
+    font-size: 11px;
+    text-align: left;
   }
 }
 
@@ -794,7 +846,7 @@ h3 {
 /* RESPONSIVE */
 @media (max-width: 1024px) {
   .about-container {
-    grid-template-columns: 1fr;
+    flex-direction: column;
     gap: 48px;
   }
 
@@ -802,10 +854,20 @@ h3 {
     position: relative;
     gap: 32px;
     top: 0;
+    width: 100%;
+    padding-top: 64px;
+    padding-bottom: 0;
+  }
+
+  .about-right {
+    width: 100%;
+    padding-top: 0;
+    gap: 72px;
   }
 
   .about-title {
     font-size: 48px;
+    white-space: normal;
   }
 
   .about-nav {
@@ -820,7 +882,20 @@ h3 {
 
 @media (max-width: 768px) {
   .about-section {
-    padding: 32px 16px;
+    padding: 0 16px 32px;
+    overflow-x: hidden;
+  }
+
+  .about-container {
+    gap: 32px;
+  }
+
+  .about-left {
+    padding-top: 48px;
+  }
+
+  .about-nav {
+    display: none;
   }
 
   .about-title {
@@ -832,17 +907,81 @@ h3 {
   }
 
   .cert-grid {
-    grid-template-columns: repeat(auto-fill, minmax(80px, 80px));
+    max-width: 100%;
+    gap: 6px;
+    overflow: visible;
+    justify-content: center;
+  }
+
+  .cert-column {
+    width: auto;
+    flex: 1 1 0;
+    gap: 6px;
   }
 
   .cert-item {
-    width: 80px;
-    height: 80px;
+    width: clamp(42px, 11vw, 64px);
+    height: clamp(42px, 11vw, 64px);
   }
 
-  .affiliation-item,
+  .affiliation-row {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .affiliation-item {
+    flex-direction: row;
+    align-items: center;
+    gap: 14px;
+    padding: 14px;
+    border-style: solid;
+    border-color: #4C4C4A;
+  }
+
+  .affiliation-logo-circle {
+    width: 64px;
+    height: 64px;
+  }
+
+  .affiliation-logo-group {
+    gap: 8px;
+  }
+
+  .affiliation-logo-small {
+    width: 30px;
+    height: 30px;
+  }
+
+  .affiliation-logo-medium {
+    width: 42px;
+    height: 42px;
+  }
+
+  .affiliation-content {
+    min-width: 0;
+    gap: 6px;
+  }
+
+  .affiliation-org {
+    font-size: 13px;
+    line-height: 1.35;
+  }
+
+  .affiliation-period {
+    font-size: 11px;
+  }
+
+  .affiliation-roles {
+    gap: 6px;
+  }
+
+  .role-badge {
+    padding: 3px 8px;
+    font-size: 10px;
+  }
+
   .award-item {
-    grid-template-columns: 1fr;
+    flex-direction: column;
     gap: 16px;
   }
 

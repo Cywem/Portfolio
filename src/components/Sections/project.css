@@ -6,6 +6,7 @@ h1, h2, p {
   height: auto;
   position: relative;
   z-index: 2;
+  overflow-x: hidden;
 }
 
 .project-header{
@@ -92,6 +93,7 @@ h1, h2, p {
   position: relative;
   width: 100%;
   overflow: hidden;
+  contain: paint;
   border-top: 1px solid #4C4C4A;
   border-bottom: 1px solid #4C4C4A;
   background: #151515;
@@ -235,4 +237,30 @@ h1, h2, p {
   justify-content: center;
   align-items: center;
   padding: 32px 0px 0px 0px;
+}
+
+@media (max-width: 768px) {
+  .project-header,
+  .project-content {
+    padding: 0 24px;
+  }
+
+  .project-header-container .header-divider {
+    height: 40px;
+  }
+
+  .header-title-container .header-title {
+    font-size: 48px;
+  }
+
+  .header-title-container .header-subtitle {
+    padding: 0 16px;
+    text-align: center;
+    font-size: 15px;
+  }
+
+  .marquee-gradient-left,
+  .marquee-gradient-right {
+    width: 120px;
+  }
 }

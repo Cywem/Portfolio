@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Lottie from 'lottie-react';
 import './hero.css';
 import DownloadButton from '../UI/DownloadButton';
@@ -21,6 +21,18 @@ const Hero = () => {
   const linkedinTimeoutRef = useRef(null);
   const [showPicture, setShowPicture] = useState(false);
   const [picturePosition, setPicturePosition] = useState({ x: 0, y: 0 });
+  const [isMobileHero, setIsMobileHero] = useState(() => (
+    typeof window !== 'undefined' ? window.matchMedia('(max-width: 768px)').matches : false
+  ));
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 768px)');
+    const handleChange = (event) => setIsMobileHero(event.matches);
+
+    mediaQuery.addEventListener('change', handleChange);
+
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
 
   const updatePicturePosition = (e) => {
     const overlayWidth = 200;
@@ -47,15 +59,15 @@ const Hero = () => {
           <ASCIIText
             text="CYREM"
             enableWaves={true}
-            asciiFontSize={6}
-            textFontSize={500}
-            planeBaseHeight={20}
+            asciiFontSize={isMobileHero ? 4 : 6}
+            textFontSize={isMobileHero ? 320 : 500}
+            planeBaseHeight={isMobileHero ? 14 : 20}
           />
         </div>
         <div className="hero-subtitle">
           <h1 className='job-title animate-slide-up' style={{ animationDelay: '0.3s' }}>
             <DecryptedText 
-              text="Front-End Developer"
+              text="Web Developer"
               speed={30}
               maxIterations={15}
               sequential={true}

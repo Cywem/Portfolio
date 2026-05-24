@@ -5,6 +5,7 @@ import RevealText from '../UI/RevealText';
 
 const Navigation = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -19,6 +20,7 @@ const Navigation = () => {
 
   const handleLogoClick = (e) => {
     e.preventDefault();
+    setMenuOpen(false);
     // Clear saved scroll position
     sessionStorage.removeItem('homeScrollPosition');
     // If already on home, scroll to top
@@ -32,6 +34,7 @@ const Navigation = () => {
 
   const handleSectionClick = (e, sectionId) => {
     e.preventDefault();
+    setMenuOpen(false);
     
     // If on home page, just scroll to section
     if (location.pathname === '/') {
@@ -54,7 +57,7 @@ const Navigation = () => {
   };
 
   return (
-    <nav className={`nav-bar ${scrolled ? 'scrolled' : ''}`} role="navigation" aria-label="Main Navigation">
+    <nav className={`nav-bar ${scrolled ? 'scrolled' : ''} ${menuOpen ? 'menu-open' : ''}`} role="navigation" aria-label="Main Navigation">
       <div className="nav-container">
         <div className="nav-logo-social">
           <button className="nav-logo" aria-label="Home" onClick={handleLogoClick}>
@@ -85,10 +88,42 @@ const Navigation = () => {
             />
           </a>
         </div>
+        <button
+          className="nav-menu-toggle"
+          type="button"
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={menuOpen}
+          aria-controls="mobile-navigation-menu"
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          <span />
+          <span />
+        </button>
         <div className="nav-pages">
           <a href="#projects" className="page-link" onClick={(e) => handleSectionClick(e, 'projects')}>PROJECTS</a>
           <a href="#tech-stack" className="page-link" onClick={(e) => handleSectionClick(e, 'tech-stack')}>TECH STACK</a>
           <a href="#about" className="page-link" onClick={(e) => handleSectionClick(e, 'about')}>ABOUT</a>
+        </div>
+      </div>
+      <div className="nav-mobile-panel" id="mobile-navigation-menu">
+        <a href="#projects" className="page-link" onClick={(e) => handleSectionClick(e, 'projects')}>PROJECTS</a>
+        <a href="#tech-stack" className="page-link" onClick={(e) => handleSectionClick(e, 'tech-stack')}>TECH STACK</a>
+        <a href="#about" className="page-link" onClick={(e) => handleSectionClick(e, 'about')}>ABOUT</a>
+        <div className="nav-mobile-socials">
+          <a
+            href="https://www.linkedin.com/in/kent-cyrem"
+            target="_blank"
+            rel="noreferrer"
+          >
+            LINKEDIN
+          </a>
+          <a
+            href="https://github.com/Cywem"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GITHUB
+          </a>
         </div>
       </div>
     </nav>

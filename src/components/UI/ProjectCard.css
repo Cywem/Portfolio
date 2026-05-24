@@ -191,22 +191,71 @@
 
 
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
+/* Mobile list layout */
+@media (max-width: 900px) {
+  .project-card {
+    min-height: 0;
+  }
+
+  .project-card-inner {
+    min-height: 0;
+    flex-direction: row;
+    align-items: stretch;
+  }
+
   .project-card-visual {
-    padding: 16px;
+    width: clamp(112px, 32vw, 156px);
+    height: auto;
+    min-height: 132px;
+    padding: 12px;
+    border-right: 1px solid #4C4C4A;
+  }
+
+  .card-gradient {
+    display: none;
+  }
+
+  .project-card-image {
+    width: 100%;
+    height: 100%;
+  }
+
+  .wireframe-grid {
+    gap: 8px;
+  }
+
+  .wireframe-row {
+    gap: 8px;
   }
 
   .wireframe-element.large {
-    height: 80px;
+    height: 42px;
   }
 
   .wireframe-element.small {
-    height: 48px;
+    height: 28px;
+  }
+
+  .project-card-info {
+    flex: 1;
+    min-width: 0;
+    gap: 10px;
+    padding: 14px;
+  }
+
+  .project-card-meta {
+    font-size: 11px;
+    gap: 12px;
+  }
+
+  .project-date {
+    text-align: right;
+    white-space: nowrap;
   }
 
   .project-title {
-    font-size: 24px;
+    font-size: 30px;
+    line-height: 1;
   }
   
   .project-card-arrow {
@@ -214,6 +263,7 @@
     height: 24px;
     min-width: 24px;
     min-height: 24px;
+    opacity: 1;
   }
   
   .project-card-arrow svg {
@@ -221,11 +271,32 @@
     height: 16px;
   }
 
-  .project-card-info {
-    padding: 16px;
+  .project-description {
+    font-size: 13px;
+    line-height: 1.45;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
-  
-  .project-card-meta {
-    font-size: 11px;
+}
+
+@media (max-width: 520px) {
+  .project-card-visual {
+    width: 96px;
+    min-height: 116px;
+    padding: 10px;
+  }
+
+  .project-card-info {
+    padding: 12px;
+  }
+
+  .project-title {
+    font-size: 24px;
+  }
+
+  .project-description {
+    -webkit-line-clamp: 2;
   }
 }

@@ -82,8 +82,9 @@
 /* Responsive */
 @media (max-width: 768px) {
   .seemore-button {
-    padding: 14px 24px;
-    gap: 8px;
+    height: 34px;
+    padding: 0 10px;
+    gap: 7px;
   }
   
   .seemore-text {
@@ -96,7 +97,7 @@
   }
   
   .seemore-button .icon-wrapper svg {
-    width: 8px;
-    height: 8px;
+    width: 9px;
+    height: 9px;
   }
 }

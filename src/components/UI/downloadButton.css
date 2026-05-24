@@ -72,8 +72,9 @@
 /* Responsive */
 @media (max-width: 768px) {
   .download-button {
-    padding: 14px 24px;
-    gap: 8px;
+    height: 34px;
+    padding: 0 10px;
+    gap: 7px;
   }
   
   .download-text {
@@ -86,7 +87,7 @@
   }
   
   .icon-wrapper svg {
-    width: 6px;
-    height: 7px;
+    width: 10px;
+    height: 10px;
   }
 }
