@@ -81,3 +81,125 @@ a {
   }
 }
 
+.nav-menu-toggle {
+  display: none;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid var(--color-rule);
+  background: transparent;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.nav-menu-toggle span {
+  width: 18px;
+  height: 2px;
+  background: var(--color-text);
+  transition: transform var(--ease-standard), opacity var(--ease-standard);
+}
+
+.nav-bar.menu-open .nav-menu-toggle span:first-child {
+  transform: translateY(4px) rotate(45deg);
+}
+
+.nav-bar.menu-open .nav-menu-toggle span:last-child {
+  transform: translateY(-4px) rotate(-45deg);
+}
+
+.nav-mobile-panel {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .nav-bar {
+    padding: 0 24px;
+    background: rgba(21, 21, 21, 0.86);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .nav-container {
+    height: 64px;
+    padding: 0 16px;
+  }
+
+  .nav-logo {
+    font-size: 22px;
+  }
+
+  .nav-logo-social {
+    gap: 18px;
+  }
+
+  .nav-logo-social a {
+    display: none;
+  }
+
+  .nav-pages {
+    display: none;
+  }
+
+  .nav-menu-toggle {
+    display: flex;
+  }
+
+  .nav-mobile-panel {
+    display: flex;
+    align-self: stretch;
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 16px;
+    flex-direction: column;
+    gap: 18px;
+    border-left: 1px solid var(--color-rule);
+    border-right: 1px solid var(--color-rule);
+    background: rgba(21, 21, 21, 0.96);
+    transition: max-height var(--ease-standard), padding var(--ease-standard), border-color var(--ease-standard);
+  }
+
+  .nav-bar.menu-open .nav-mobile-panel {
+    max-height: 280px;
+    padding: 18px 16px 20px;
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  .nav-mobile-panel a {
+    color: var(--color-text);
+    font-family: var(--font-mono);
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .nav-mobile-socials {
+    display: flex;
+    gap: 18px;
+    padding-top: 2px;
+  }
+
+  .nav-mobile-socials a {
+    color: var(--color-text-muted);
+    font-size: 14px;
+    font-weight: 400;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-bar {
+    padding: 0 16px;
+  }
+
+  .nav-container {
+    height: 58px;
+    padding: 0 12px;
+  }
+
+  .nav-menu-toggle {
+    width: 36px;
+    height: 36px;
+  }
+}

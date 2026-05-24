@@ -246,8 +246,12 @@ class CanvAscii {
 
     this.scene = new THREE.Scene();
     this.mouse = { x: 0, y: 0 };
+    this.hasPointerInput = false;
+    this.orientationEnabled = false;
 
     this.onMouseMove = this.onMouseMove.bind(this);
+    this.onDeviceOrientation = this.onDeviceOrientation.bind(this);
+    this.requestOrientationPermission = this.requestOrientationPermission.bind(this);
 
     this.setMesh();
     this.setRenderer();
@@ -303,6 +307,7 @@ class CanvAscii {
 
     this.container.addEventListener('mousemove', this.onMouseMove);
     this.container.addEventListener('touchmove', this.onMouseMove);
+    this.enableDeviceOrientation();
   }
 
   setSize(w, h) {
@@ -315,6 +320,9 @@ class CanvAscii {
     this.filter.setSize(w, h);
 
     this.center = { x: w / 2, y: h / 2 };
+    if (!this.hasPointerInput) {
+      this.mouse = { ...this.center };
+    }
   }
 
   load() {
@@ -326,7 +334,48 @@ class CanvAscii {
     const bounds = this.container.getBoundingClientRect();
     const x = e.clientX - bounds.left;
     const y = e.clientY - bounds.top;
+    this.hasPointerInput = true;
     this.mouse = { x, y };
+  }
+
+  enableDeviceOrientation() {
+    if (typeof window === 'undefined' || !('DeviceOrientationEvent' in window)) return;
+
+    if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+      window.addEventListener('touchstart', this.requestOrientationPermission, { once: true, passive: true });
+      window.addEventListener('click', this.requestOrientationPermission, { once: true });
+      return;
+    }
+
+    window.addEventListener('deviceorientation', this.onDeviceOrientation);
+    this.orientationEnabled = true;
+  }
+
+  requestOrientationPermission() {
+    if (typeof DeviceOrientationEvent === 'undefined' || typeof DeviceOrientationEvent.requestPermission !== 'function') return;
+
+    DeviceOrientationEvent.requestPermission()
+      .then(permissionState => {
+        if (permissionState === 'granted' && !this.orientationEnabled) {
+          window.addEventListener('deviceorientation', this.onDeviceOrientation);
+          this.orientationEnabled = true;
+        }
+      })
+      .catch(() => {});
+  }
+
+  onDeviceOrientation(event) {
+    if (typeof event.beta !== 'number' || typeof event.gamma !== 'number') return;
+
+    const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+    const gamma = clamp(event.gamma, -35, 35);
+    const beta = clamp(event.beta, -35, 35);
+
+    this.hasPointerInput = false;
+    this.mouse = {
+      x: Math.map(gamma, -35, 35, 0, this.width),
+      y: Math.map(beta, -35, 35, 0, this.height)
+    };
   }
 
   animate() {
@@ -379,6 +428,9 @@ class CanvAscii {
     this.container.removeChild(this.filter.domElement);
     this.container.removeEventListener('mousemove', this.onMouseMove);
     this.container.removeEventListener('touchmove', this.onMouseMove);
+    window.removeEventListener('deviceorientation', this.onDeviceOrientation);
+    window.removeEventListener('touchstart', this.requestOrientationPermission);
+    window.removeEventListener('click', this.requestOrientationPermission);
     this.clear();
     this.renderer.dispose();
   }

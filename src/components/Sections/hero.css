@@ -185,3 +185,96 @@ h1, p {
   animation: fadeIn 1s ease forwards;
   animation-delay: 0.3s;
 }
+
+@media (max-width: 900px) {
+  .hero-section {
+    padding: 0 24px;
+    overflow-x: hidden;
+  }
+
+  .hero-section .hero-content {
+    padding: 72px 0 64px;
+    gap: 20px;
+  }
+
+  .hero-title {
+    height: clamp(118px, 32vw, 180px);
+    overflow: hidden;
+  }
+
+  .hero-subtitle {
+    width: 100%;
+    gap: 16px;
+    padding: 0 18px;
+    box-sizing: border-box;
+  }
+
+  .hero-subtitle .job-title {
+    width: 100%;
+    max-width: 100%;
+    font-size: clamp(30px, 7vw, 38px);
+    line-height: 1.28;
+    text-align: center;
+    align-self: center;
+    overflow-wrap: anywhere;
+  }
+
+  .hero-subtitle .job-summary {
+    max-width: 100%;
+    font-size: clamp(15px, 3.8vw, 18px);
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-section {
+    padding: 0 24px;
+  }
+
+  .hero-section .hero-content {
+    padding: 58px 0 56px;
+    gap: 18px;
+  }
+
+  .hero-title {
+    height: 170px;
+    overflow: visible;
+  }
+
+  .hero-subtitle {
+    padding: 0 12px;
+    gap: 14px;
+  }
+
+  .hero-subtitle .job-title {
+    font-size: clamp(28px, 9vw, 34px);
+    line-height: 1.25;
+  }
+
+  .hero-subtitle .job-summary {
+    font-size: clamp(14px, 4vw, 16px);
+  }
+
+  .hero-subtitle .location {
+    font-size: 15px;
+  }
+
+  .find-me-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .find-me-container p {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero-title {
+    height: 150px;
+  }
+
+  .hero-subtitle .job-title {
+    font-size: 27px;
+  }
+}

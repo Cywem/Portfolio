@@ -17,7 +17,7 @@ export default function RevealText({
       const maxIterations = 8;
 
       intervalRef.current = setInterval(() => {
-        setDisplayText(prev => {
+        setDisplayText(() => {
           return fullText
             .split('')
             .map((char, index) => {
